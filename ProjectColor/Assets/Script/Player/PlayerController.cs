@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
 
     //공격 관런
     public Transform AttackPoint; // 공격 포인트
-    public int AttackPower = 10; //플레이어 공격력
+    public float AttackPower = 10; //플레이어 공격력
     bool isAttack = false; //공격 상태
     bool isSuperArmor = false; // 공격시 슈퍼아머 상태인지
 
@@ -125,7 +125,10 @@ public class PlayerController : MonoBehaviour
     public float GreenSkillCoefficient = 1.5f;
     bool isGreenSkillAni = false;
 
-    //SmashAttack
+    //색깔 반응데미지 관련 변수
+    public float PurpleReactionDamage = 1.5f;
+    public float YellowReactionDamage = 1.5f;
+    public float SkyblueReactionDamage = 2.0f;
 
     //애니메이션 변수 선언
     Animator PlayerAnimation;
@@ -172,38 +175,38 @@ public class PlayerController : MonoBehaviour
             isRun = true;
 
 
-        if (inputDash && !isDash && (OnGround || OnPlatform) && GameManager.NowStamina >= coatDash && !isAttack)
+        if (inputDash && !isDash && (OnGround || OnPlatform) && GameManager.instance.NowStamina >= coatDash && !isAttack)
         {
             PlayerDash();
         }
         else if(inputSkill && !isAttack && !isDash && !isHurt)
         {
             
-            Color isColor = GameManager.NColor;
-            int isStamina = GameManager.NowStamina;
+            Color isColor = GameManager.instance.NColor;
+            int isStamina = GameManager.instance.NowStamina;
 
             if (isColor == Color.blue && isStamina >= BlueSkillStaminaCoat)
             {
                 //스테미나 소모
-                GameManager.NowStamina -= BlueSkillStaminaCoat;
+                GameManager.instance.NowStamina -= BlueSkillStaminaCoat;
                 ColorSkill(BlueSkillPre, isColor, BlueSkilTime, BlueSkillDelay);
             }
             else if(isColor == Color.green && (OnGround || OnPlatform) && isStamina >= GreenSkillStaminaCoat)
             {
                 //스테미나 소모
-                GameManager.NowStamina -= GreenSkillStaminaCoat;
+                GameManager.instance.NowStamina -= GreenSkillStaminaCoat;
                 ColorSkill(GreenSkillPre, isColor, GreenSkilTime, GreenSkillDelay);
                 SFXManager.Instance.PlaySound(SFXManager.Instance.playerGreenSkill); // 사운드 재생
             }
             else if(isColor == Color.red && isStamina >= RedSkillStaminaCoat)
             {
                 //스테미나 소모
-                GameManager.NowStamina -= RedSkillStaminaCoat;
+                GameManager.instance.NowStamina -= RedSkillStaminaCoat;
                 ColorSkill(RedSkillPre, isColor, RedSkilTime, RedSkillDelay);
             }
             
         }
-        else if (inputNAttack && !isAttack && !isDash && !isHurt && GameManager.NowStamina >= NAttackStaminaCost && !isHurt)
+        else if (inputNAttack && !isAttack && !isDash && !isHurt && GameManager.instance.NowStamina >= NAttackStaminaCost && !isHurt)
         {
             PlayerNomalAttack();
             SFXManager.Instance.PlaySound(SFXManager.Instance.playerNomalAttack);//사운드 재생
@@ -419,7 +422,7 @@ public class PlayerController : MonoBehaviour
     public void PlayerDash()
     {
         isDash = true;
-        GameManager.PlayerStamina = coatDash;
+        GameManager.instance.PlayerStamina = coatDash;
         gameObject.layer = InvcPlayerLayer; // 무적 레이어로 변경
         float moveArrow = transform.localScale.x;
 
@@ -454,7 +457,7 @@ public class PlayerController : MonoBehaviour
     public void PlayerNomalAttack()
     {
         if (isHurt) return;
-        GameManager.PlayerStamina = NAttackStaminaCost;
+        GameManager.instance.PlayerStamina = NAttackStaminaCost;
 
         isAniNAttack = true; // 공격 애니 활성화
         isAttack = true;//공격 상태 활성화
@@ -502,8 +505,9 @@ public class PlayerController : MonoBehaviour
                 NomalAttack.GetComponent<Transform>().position = AttackPoint.position; // 프리펩 위치 설정
                 NomalAttack.GetComponent<Transform>().localScale = new Vector2(1 * this.transform.localScale.x, 1);//캐릭터 바라보는 방향으로 설정으로 생성
                 NomalAttack.transform.SetParent(this.transform); // 해당 프리펩을 플레이어의 자식으로 설정
-                NomalAttack.GetComponent<NomalAttack>().SkillDamage = (int)(Mathf.Round((float)AttackPower * NAttackCoefficient)); // 일반공격 플리펩의 공격 데미지 값 설정
+                NomalAttack.GetComponent<NomalAttack>().SkillDamage = (int)(Mathf.Round(AttackPower * NAttackCoefficient)); // 일반공격 플리펩의 공격 데미지 값 설정
                 NomalAttack.GetComponent<NomalAttack>().EfArrow = this.transform.localScale.x; // 캐릭터가 바로보는 방향으로 이펙트 생성을 위한 정보값 전달
+                NomalAttack.GetComponent<NomalAttack>().NColor = GameManager.instance.NColor;
             }
             yield return null;
         }
@@ -561,7 +565,7 @@ public class PlayerController : MonoBehaviour
                 if (SkillColor == Color.red)
                 {
                     //데미지 전달
-                    ColorSkill.GetComponent<RedSkill>().UdateDamege = (int)(Mathf.Round((float)AttackPower * RedSkillCoefficient));
+                    ColorSkill.GetComponent<RedSkill>().UdateDamege = (int)(Mathf.Round(AttackPower * RedSkillCoefficient));
                     //투사체 방향 값 전달
                     ColorSkill.GetComponent<RedSkill>().UdateShootingSpeed = RedSkillShotingSpeed;
                     ColorSkill.GetComponent<RedSkill>().SpawnArrow = this.transform.localScale.x;
@@ -572,7 +576,7 @@ public class PlayerController : MonoBehaviour
                     ColorSkill.transform.SetParent(this.transform); // 해당 프리펩을 플레이어의 자식으로 설정
 
                     //데미지 전달
-                    ColorSkill.GetComponent<GreenSkill>().UdateDamege = (int)(Mathf.Round((float)AttackPower * GreenSkillCoefficient));
+                    ColorSkill.GetComponent<GreenSkill>().UdateDamege = (int)(Mathf.Round(AttackPower * GreenSkillCoefficient));
                     //넉백 파워 전달
                     ColorSkill.GetComponent<GreenSkill>().UdateKnockBackPower = GreenSkillKnockBackPower;
                 }
@@ -585,7 +589,7 @@ public class PlayerController : MonoBehaviour
                     //백터 초기화
                     RBody.velocity = new Vector2(RBody.velocity.x, 0);
                     //데미지 전달
-                    ColorSkill.GetComponent<BlueSkill>().UdateDamege = (int)(Mathf.Round((float)AttackPower * BlueSkillCoefficient));
+                    ColorSkill.GetComponent<BlueSkill>().UdateDamege = (int)(Mathf.Round(AttackPower * BlueSkillCoefficient));
                     //점프 액션 구현
                     Vector2 AttackV = new Vector2(BlueSkillDashPower * this.GetComponent<Transform>().localScale.x, BlueSkillJumpPower);
                     RBody.AddForce(AttackV, ForceMode2D.Impulse);
@@ -676,9 +680,9 @@ public class PlayerController : MonoBehaviour
 
         gameObject.layer = InvcPlayerLayer;// 무적 레이어로 변경
 
-        GameManager.PlayerHp = damage;
+        GameManager.instance.PlayerHp = damage;
 
-        int hp = GameManager.PlayerHp;
+        int hp = GameManager.instance.PlayerHp;
 
         if (hp < 0)
         {

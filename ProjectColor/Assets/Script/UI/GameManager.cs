@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    //싱클톤 패턴화
+    public static GameManager instance = null;
     // 색깔 선택 관련
     public Image nowColor;
     public Slider HealthBar;
@@ -12,16 +14,16 @@ public class GameManager : MonoBehaviour
 
     bool inputNcolor;
 
-    static int NcolorCode = 3;// 현재색깔
-    public static Color NColor;
+    int NcolorCode = 3;// 현재색깔
+    public Color NColor;
     
     //체력바
-    public static int MaxHealth = 100;
-    public static int NowHealth = MaxHealth;
+    public int MaxHealth = 100;
+    public int NowHealth;
 
     // 스태미나 관리
-    public static int MaxStamina = 100;
-    public static int NowStamina = MaxStamina;
+    public int MaxStamina = 100;
+    public int NowStamina;
     float staminaTimer;
     public float recoveryCycle = 0.2f; //스태미나 회복주기
     public int recoveryAmount = 3; //회복량
@@ -34,7 +36,17 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //
         PadeOutScreen();
+        //시작 체력, 스태미나 최대체력, 스태미나로 설정
+        NowHealth = MaxHealth;
+        NowStamina = MaxStamina;
+    }
+
+    //싱클톤 패턴 초기화
+    private void Awake()
+    {
+        instance = this;
     }
 
     // Update is called once per frame
@@ -88,7 +100,7 @@ public class GameManager : MonoBehaviour
     }
 
     //스태미나 관리
-    public static int PlayerStamina
+    public int PlayerStamina
     {
         get
         {
@@ -103,7 +115,7 @@ public class GameManager : MonoBehaviour
     }
 
     //체력 속성
-    public static int PlayerHp
+    public int PlayerHp
     {
         get
         {

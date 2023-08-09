@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NomalAttack : MonoBehaviour
 {
-    Color NColor; //현재색깔
+    public Color NColor; //현재색깔
     GameObject NEffect; //현재 이펙트
 
     public int EnemyLayer; // 적 오브젝트 레이어
@@ -19,8 +19,6 @@ public class NomalAttack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        NColor = GameManager.NColor;//게임 메니저에서 현재 색을 가져옴
-
         //공격 이펙트 생성
         if (NColor == Color.red)
             NEffect = AttackEfPreRed;
@@ -29,9 +27,11 @@ public class NomalAttack : MonoBehaviour
         else if (NColor == Color.green)
             NEffect = AttackEfPreGreen;
 
-        AttackEf = Instantiate(NEffect);
-        AttackEf.transform.position = new Vector2(this.transform.position.x + (1f * EfArrow), this.transform.position.y);
-
+        if(NEffect != null)
+        {
+            AttackEf = Instantiate(NEffect);
+            AttackEf.transform.position = new Vector2(this.transform.position.x + (1f * EfArrow), this.transform.position.y);
+        }
        // AttackEf.transform.SetParent(this.transform);
     }
 

@@ -19,7 +19,6 @@ public class EnemyManager : MonoBehaviour
     Color YellowReaction = new Color(1, 1, 0, 1);
     Color SkyblueReaction = new Color(0, 1, 1, 1);
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -43,10 +42,19 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    //색반응 쿨타임 후 다시 색칠해 지게 만들기
+    //색반응 액션 + 쿨타임 구현
     IEnumerator ColorReactionAction(Color ReactionColor)
     {
-        this.GetComponent<EnemyController>().HurtEnemy(30, 0, null);//데미지 부여
+        //색깔별 데미지 계산
+        int ColorReactionDamage = 0;
+        if (ReactionColor == PurpleReaction)
+            ColorReactionDamage = (int)Mathf.Round(PlayerController.instance.AttackPower * PlayerController.instance.PurpleReactionDamage);
+        else if (ReactionColor == YellowReaction)
+            ColorReactionDamage = (int)Mathf.Round(PlayerController.instance.AttackPower * PlayerController.instance.YellowReactionDamage);
+        else if (ReactionColor == SkyblueReaction)
+            ColorReactionDamage = (int)Mathf.Round(PlayerController.instance.AttackPower * PlayerController.instance.SkyblueReactionDamage);
+        this.GetComponent<EnemyController>().HurtEnemy(ColorReactionDamage, 0, null);//데미지 부여
+        
         isColorReaction = true; //색반용 여부 true
         yield return new WaitForSeconds(ReColorReactionTime);
         NowReactionColor = Color.black; //색 원상태로
