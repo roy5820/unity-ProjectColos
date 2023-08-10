@@ -5,12 +5,10 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     Rigidbody2D RBody;
+    private EnemyManager EManager;// 에너미 메니저 연결
+    
     //적 체력관련 변수 선언
-    private EnemyManager EManager;
     public int MaxHealth = 100;
-
-    //적 피격 상태관련 변수 선언
-    bool isHurt = false;
 
     //적 데미지 관련 변수 선업
     public int EnemyDamage = 6;
@@ -29,17 +27,10 @@ public class EnemyController : MonoBehaviour
         EManager.GSNowHp = MaxHealth;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-        
-    }
-
     //피격함수
     public void HurtEnemy(int Damage, float KbPower, Transform ohterT)
     {
-        isHurt = true;//피격상태 설정
+        EManager.isHurt = true;//피격상태 설정
         EManager.GSNowHp = EManager.GSNowHp - Damage;//피격 데미지 반영
         
         if(ohterT != null)
@@ -57,6 +48,7 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
+            EManager.isHurt = false;
             if (EManager.GSNowHp <= 0)
             {
                 Destroy(this.gameObject);
@@ -67,6 +59,7 @@ public class EnemyController : MonoBehaviour
     //히트 시 넉백 구현
     IEnumerator KnockBackTimer()
     {
+        EManager.isKnockBack = true;//넉백상태 설정
         float isTime = 0f;
 
         while (isTime < 0.3f)
@@ -82,7 +75,8 @@ public class EnemyController : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        isHurt = false;
+        EManager.isHurt = false;
+        EManager.isKnockBack = false;
     }
 
     private void OnCollisionEnter2D(Collision2D other)

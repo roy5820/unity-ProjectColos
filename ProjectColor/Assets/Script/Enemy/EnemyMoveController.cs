@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class EnemyMoveController : MonoBehaviour
 {
-    public float detectionRange = 4f;  // 플레이어를 감지하는 범위
+    private EnemyManager EManager;// 에너미 메니저 연결
+
+    public float detectionRange = 5f;  // 플레이어를 감지하는 범위
     public float movementSpeed = 2f;   // 이동 속도
 
     private Transform player;           // 플레이어의 Transform 컴포넌트
@@ -21,7 +23,12 @@ public class EnemyMoveController : MonoBehaviour
     public GameObject FrontPlatformSensor;
     bool OnFrontGround = false;
 
-    //
+    //이동 여부
+    bool isMove = false;
+
+    //플레이어 탐색 여부
+    bool ScanPlayer = true;
+    float StapScanTime = 1.0f;
 
     private void Awake()
     {
@@ -31,42 +38,71 @@ public class EnemyMoveController : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        EManager = GetComponent<EnemyManager>();
     }
 
     private void Update()
     {
+        // 절벽 체크
+        if(ScanPlayer)
+            OnFrontGround = FrontGroundSensor.GetComponent<Sensor>().colSencorState() || FrontPlatformSensor.GetComponent<Sensor>().colSencorState();
+
         // 플레이어 감지
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
-
-        // 절벽 체크
-        OnFrontGround = FrontGroundSensor.GetComponent<Sensor>().colSencorState() || FrontPlatformSensor.GetComponent<Sensor>().colSencorState();
-        Debug.Log(OnFrontGround);
-        if (distanceToPlayer < detectionRange)
+        
+        //적 오브젝트 이동 방향 설정
+        //플레이어 탐색 하여 해당 방향으로 이동
+        if (distanceToPlayer < detectionRange && ScanPlayer)
         {
             // 플레이어를 방향으로 MoveArrow 변경
-            Vector2 direction = (player.position - transform.position).normalized;
-            if (direction.x < 0)
-                MoveArrow = -1;
-            else
-                MoveArrow = 1;
+            if (OnFrontGround)
+            {
+                Vector2 direction = (player.position - transform.position).normalized;
+                if (direction.x < 0)
+                    MoveArrow = -1;
+                else
+                    MoveArrow = 1;
+            }
+        }
+        //앞으로 갈 공간이 없을 시 유턴 및 일정 시간동안 플레이어 탐지 안함
+        if (!OnFrontGround)
+        {
+            Debug.Log(OnFrontGround);
+            OnFrontGround = true;
+            MoveArrow *= -1;
+            StartCoroutine(StopScanPlayer());
         }
 
-        // 
-        if (OnFrontGround)
-        {
-            rb.velocity = new Vector2(movementSpeed * MoveArrow, rb.velocity.y);
-            Debug.Log("MoveValue: " + movementSpeed + ", " + MoveArrow);
-        }
-        else
-        {
-            MoveArrow *= -1;
-            rb.velocity = new Vector2(0, rb.velocity.y);
-        }
+        //적 오브젝트 이동 여부 설정
+        if (EManager.isKnockBack)
+            isMove = false;
+        else if (OnFrontGround)
+            isMove = true;
 
         //MoveArrow에 따라 로컬스케일 반전
         if (MoveArrow > 0)
+        {
             this.transform.localScale = new Vector2(1, 1);
+        }
         else if (MoveArrow < 0)
+        {
             this.transform.localScale = new Vector2(-1, 1);
+            //this.transform.FindChild("EnemyCanvas").transform.localScale = new Vector2(1, 1);
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        //Enemy 이동 구현
+        if (isMove)
+        {
+            rb.velocity = new Vector2(movementSpeed * MoveArrow, rb.velocity.y);
+        }
+    }
+    private IEnumerator StopScanPlayer()
+    {
+        ScanPlayer = false;
+        yield return new WaitForSeconds(StapScanTime);
+        ScanPlayer = true;
     }
 }
