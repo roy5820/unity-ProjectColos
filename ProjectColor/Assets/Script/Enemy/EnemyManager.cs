@@ -15,8 +15,9 @@ public class EnemyManager : MonoBehaviour
     int NowHp = 0;
 
     //Enemy 상태 관련 변수
-    public bool isHurt = false;
-    public bool isKnockBack = false;
+    public bool isHurt = false;//피격 상태
+    public bool isKnockBack = false;//넉백 상태
+    public bool isMove = false; //이동 상태
 
     //색깔 반응 관련 변수
     Image ReactionColorImage;

@@ -49,7 +49,8 @@ public class EnemyMoveController : MonoBehaviour
 
         // 플레이어 감지
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
-        
+        Vector2 direction = (player.position - transform.position).normalized;// 앞 뒤 거리 계산
+
         //적 오브젝트 이동 방향 설정
         //플레이어 탐색 하여 해당 방향으로 이동
         if (distanceToPlayer < detectionRange && ScanPlayer)
@@ -57,17 +58,15 @@ public class EnemyMoveController : MonoBehaviour
             // 플레이어를 방향으로 MoveArrow 변경
             if (OnFrontGround)
             {
-                Vector2 direction = (player.position - transform.position).normalized;
-                if (direction.x < 0)
+                if (direction.x < -0.1f)
                     MoveArrow = -1;
-                else
+                else if(direction.x > 0.1f)
                     MoveArrow = 1;
             }
         }
         //앞으로 갈 공간이 없을 시 유턴 및 일정 시간동안 플레이어 탐지 안함
         if (!OnFrontGround)
         {
-            Debug.Log(OnFrontGround);
             OnFrontGround = true;
             MoveArrow *= -1;
             StartCoroutine(StopScanPlayer());
