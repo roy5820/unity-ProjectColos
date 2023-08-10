@@ -17,12 +17,6 @@ public class EnemyController : MonoBehaviour
     public int EnemyAttackDamage = 10;
     public float EnemyKnockBackPower = 5;
 
-    public GameObject GroundSencor;
-    public GameObject PlatformSencor;
-
-    bool OnGround = false;
-    bool OnPlatform = false;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -38,15 +32,8 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //실시간 센서 상태 업데이트
-        OnGround = GroundSencor.GetComponent<PlayerSensor>().colSencorState();
-        OnPlatform = PlatformSencor.GetComponent<PlayerSensor>().colSencorState();
 
-        //캐릭터가 히트상태가 아닐 시 안밀리게 하는 임시 코드
-        if (!isHurt && (OnGround || OnPlatform))
-        {
-            RBody.velocity = new Vector2(0,0);
-        }
+        
     }
 
     //피격함수

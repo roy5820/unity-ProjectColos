@@ -19,9 +19,9 @@ public class PlayerController : MonoBehaviour
     GameObject OtherPlatform = null;
 
     //충돌 체크 관련 변수 선언
-    private PlayerSensor GroundSensor; // 땅체크
-    private PlayerSensor PlatformSensor;
-    private PlayerSensor LadderSensor;
+    private Sensor GroundSensor; // 땅체크
+    private Sensor PlatformSensor;
+    private Sensor LadderSensor;
 
     //플레이어 상태 레이어 변수
     public int LadderLayer; //사다리 레이어
@@ -138,9 +138,9 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         //바닥체크 센서
-        GroundSensor = transform.Find("GroundSensor").GetComponent<PlayerSensor>();
-        PlatformSensor = transform.Find("PlatformSensor").GetComponent<PlayerSensor>();
-        LadderSensor = transform.Find("LadderSensor").GetComponent<PlayerSensor>();
+        GroundSensor = transform.Find("GroundSensor").GetComponent<Sensor>();
+        PlatformSensor = transform.Find("PlatformSensor").GetComponent<Sensor>();
+        LadderSensor = transform.Find("LadderSensor").GetComponent<Sensor>();
 
         //변수 초기화
         RBody = this.GetComponent<Rigidbody2D>();
