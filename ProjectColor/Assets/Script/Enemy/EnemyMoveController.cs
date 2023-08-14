@@ -11,7 +11,7 @@ public class EnemyMoveController : MonoBehaviour
 
     private Transform player;           // 플레이어의 Transform 컴포넌트
     private Rigidbody2D rb;            // Rigidbody2D 컴포넌트
-    private float MoveArrow = 1;
+    public float MoveArrow = 1;   //적 오브젝트의 이동 방향
 
     //바닥 체크 센서
     public GameObject GroundSensor;
@@ -55,8 +55,8 @@ public class EnemyMoveController : MonoBehaviour
         //플레이어 탐색 하여 해당 방향으로 이동
         if (distanceToPlayer < detectionRange && ScanPlayer)
         {
-            // 플레이어를 방향으로 MoveArrow 변경
-            if (OnFrontGround)
+            // 플레이어를 방향으로 MoveArrow 변경 + 공격시 방향 전환 X
+            if (OnFrontGround && !EManager.isAttack)
             {
                 if (direction.x < -0.1f)
                     MoveArrow = -1;
@@ -75,6 +75,11 @@ public class EnemyMoveController : MonoBehaviour
         //적 오브젝트 이동 여부 설정
         if (EManager.isKnockBack)
             isMove = false;
+        else if (EManager.isAttack)//공격 시 정지
+        {
+            rb.velocity = new Vector2(0, rb.velocity.y);
+            isMove = false;
+        }
         else if (OnFrontGround)
             isMove = true;
 

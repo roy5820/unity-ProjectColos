@@ -65,7 +65,7 @@ public class RedSkill : MonoBehaviour
         }
     }
 
-    //넉백파워를 컨트롤하는 함수
+    //투사체 속도를 컨트롤하는 함수
     public float UdateShootingSpeed
     {
         get
@@ -77,6 +77,4 @@ public class RedSkill : MonoBehaviour
             ShootingSpeed = value;
         }
     }
-
-    //오브젝트 스폰방향
 }

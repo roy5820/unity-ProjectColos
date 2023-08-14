@@ -81,6 +81,9 @@
     <Compile Include="Assets\Script\SpcObj\CrimbObj.cs" />
     <Compile Include="Assets\Script\EfGround\TrapPad.cs" />
     <Compile Include="Assets\Script\Other\Sensor.cs" />
+    <Compile Include="Assets\Script\Enemy\EnemySmashAttack.cs" />
+    <Compile Include="Assets\Script\Enemy\EnemyShotingAttack.cs" />
+    <Compile Include="Assets\Script\Enemy\EnemySkillPre\EnemyBullet.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
