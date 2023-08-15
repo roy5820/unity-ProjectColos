@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8797075456432956637}
   - component: {fileID: 8306095164223064522}
   - component: {fileID: 1894622413471975073}
-  m_Layer: 14
+  m_Layer: 17
   m_Name: RedSkillPre
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2245291079406561962}
   - component: {fileID: 8461665139265542073}
-  m_Layer: 14
+  m_Layer: 17
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

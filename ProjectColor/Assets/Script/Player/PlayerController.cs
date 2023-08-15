@@ -382,7 +382,7 @@ public class PlayerController : MonoBehaviour
         }
         else isAniRun = false;
 
-        if ((inputRun != 0 || (OnGround || OnPlatform)) && !isAttack && !isClimb && !isHurt && !isDash && !isHurt)
+        if ((inputRun != 0 || (OnGround || OnPlatform)) && !isAttack && !isClimb && !isHurt && !isDash)
         {
             Vector2 runV = new Vector2(inputRun * runSpeed, RBody.velocity.y);
             RBody.velocity = runV;
@@ -697,26 +697,28 @@ public class PlayerController : MonoBehaviour
             y = y < 0 ? -1 : 1;
 
             RBody.velocity = new Vector2(0, 0);
-            
+
             if (!isSuperArmor){
                 Vector2 KnockBackV = new Vector2(x, y);
-                RBody.AddForce(KnockBackV * KbPower, ForceMode2D.Impulse);
+                
+                StartCoroutine(KnockBackTimer(KnockBackV, KbPower));
             }
-
-            StartCoroutine(KnockBackTimer());
             StartCoroutine(HurtInvcExit());
             StartCoroutine(Alphablink());
         }
     }
     //히트 시 넉백 구현
-    IEnumerator KnockBackTimer()
+    IEnumerator KnockBackTimer(Vector2 KnockBackV, float KbPower)
     {
         float isTime = 0f;
-
-        while(isTime < 0.3f)
+        float AddForceCnt = 0;
+        while (isTime < 0.3f)
         {
+            //웬지 모를 버그 때문에 바로 가만히 서인는 상태에서 AddForce로 넉백을 하면 넉백이 씹이는 현상 발생(가끔씩 안씹임) -> 그래서 카운트를 세서 2번쨰 부터 넉백 구현하게 함
+            if (AddForceCnt == 2)
+                RBody.AddForce(KnockBackV * KbPower, ForceMode2D.Impulse);
+            AddForceCnt++;
             isTime += Time.deltaTime;
-
             yield return null;
         }
 
@@ -727,7 +729,8 @@ public class PlayerController : MonoBehaviour
     IEnumerator HurtInvcExit()
     {
         yield return new WaitForSeconds(HurtInvcTime);
-        gameObject.layer = PlayerLayer;
+        if(!isDash)//대쉬 중일 경우 무적 해제 X
+            gameObject.layer = PlayerLayer;
         isHurtInvc = false;
     }
 

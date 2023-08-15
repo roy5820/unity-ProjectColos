@@ -379,7 +379,7 @@ MonoBehaviour:
   RedSkillShotingSpeed: 25
   BlueSkillPre: {fileID: 6699516953355484351, guid: 429381e1c89d4e6488deec7a8ad76f76, type: 3}
   BlueSkillStaminaCoat: 30
-  BlueSkillDashPower: 3
+  BlueSkillDashPower: 0
   BlueSkillJumpPower: 25
   BlueSkilTime: 0.5
   BlueSkillDelay: 0.2
@@ -390,6 +390,9 @@ MonoBehaviour:
   GreenSkilTime: 0.7
   GreenSkillDelay: 0.4
   GreenSkillCoefficient: 1.2
+  PurpleReactionDamage: 1.5
+  YellowReactionDamage: 1.5
+  SkyblueReactionDamage: 2
 --- !u!81 &2311855110513187799
 AudioListener:
   m_ObjectHideFlags: 0

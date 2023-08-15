@@ -5,23 +5,25 @@ using UnityEngine.UI;
 
 public class EnemyManager : MonoBehaviour
 {
-    //Enemy UI°ü·Ã º¯¼ö
-    public GameObject EnemyCanvusPre; //ºÒ·¯¿Ã ÇÁ¸®Æé
+    //Enemy UIìƒì„± ê´€ë ¨ ë³€ìˆ˜
+    public GameObject EnemyCanvusPre; //ì  UI í”„ë¦¬í©
     GameObject EnemyCanvus;
 
-    //EnemyÀÇ hp¸¦ °ü¸®ÇÏ±â À§ÇÑ º¯¼ö ¼±¾ğ
+    //Enemy UI ì„¤ì • ê´€ë ¨
     private Slider HpSlider;
     int MaxHp = 0;
     int NowHp = 0;
 
-    //Enemy »óÅÂ °ü·Ã º¯¼ö
-    public bool isHurt = false;
-    public bool isKnockBack = false;
+    //Enemy ìƒíƒœê´€ë ¨ ë³€ìˆ˜
+    public bool isHurt = false;//í”¼ê²© ì—¬ë¶€
+    public bool isKnockBack = false;//ë„‰ë°± ì—¬ë¶€
+    public bool isMove = false; //ì´ë™ ì—¬ë¶€
+    public bool isAttack = false; //ê³µê²© ì—¬ë¶€
 
-    //»ö±ò ¹İÀÀ °ü·Ã º¯¼ö
+    //ìƒ‰ë°˜ì‘ ê´€ë ¨ ì„¤ì •
     Image ReactionColorImage;
     public float ReColorReactionTime = 3.0f;
-    bool isColorReaction = false; //»ö»ó ¹İÀÀ ¿©ºÎ
+    bool isColorReaction = false; //ìƒ‰ë°˜ì‘ ì—¬ë¶€
     Color NowReactionColor = Color.black;
     Color PurpleReaction = new Color(1, 0, 1, 1);
     Color YellowReaction = new Color(1, 1, 0, 1);
@@ -30,40 +32,40 @@ public class EnemyManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        EnemyCanvus = Instantiate(EnemyCanvusPre, this.transform);//Àû ¿ÀºêÁ§Æ® UI»ı¼º
-        EnemyCanvus.transform.SetParent(null); //UI¸¦ µ¶¸³ÀûÀ¸·Î ¸¸µé±â
-        HpSlider = EnemyCanvus.transform.FindChild("HpBar").GetComponent<Slider>(); 
-        ReactionColorImage = EnemyCanvus.transform.FindChild("ReactionColor").GetComponent<Image>();
+        EnemyCanvus = Instantiate(EnemyCanvusPre, this.transform);//ì  UI ìƒì„±
+        EnemyCanvus.transform.SetParent(null); //UI ë…ë¦½í™”
+        HpSlider = EnemyCanvus.transform.Find("HpBar").GetComponent<Slider>(); 
+        ReactionColorImage = EnemyCanvus.transform.Find("ReactionColor").GetComponent<Image>();
     }
 
     // Update is called once per frame
     void Update()
     {
         EnemyCanvus.transform.localPosition = this.transform.position;
-        //¼³Á¤µÈ ÃÖ´ëÃ¼·Â ÇöÁ¦ Ã¼·Â ¹İ¿µ
+        //ì  ì²´ë ¥ ì—…ë°ì´íŠ¸
         HpSlider.maxValue = MaxHp;
         HpSlider.value = NowHp;
 
-        //»ö Àû¿ë
+        //ìƒ‰ ë°˜ì‘ ì—…ã…ˆë°ì´íŠ¸
         ReactionColorImage.GetComponent<Image>().color = NowReactionColor;
 
-        //¹İÀÀ »ö±ò ÄÁÆ®·Ñ
+        //ìƒ‰ë°˜ì‘ ì‹œ íš¨ê³¼ ì ìš©
         if ((NowReactionColor == PurpleReaction || NowReactionColor == YellowReaction || NowReactionColor == SkyblueReaction) && !isColorReaction)
         {
             StartCoroutine(ColorReactionAction(NowReactionColor));
         }
     }
 
-    //Àû Á×À» ¶§ UIÀÌµµ °°ÀÌ »èÁ¦
+    //ì  ì£½ì„ ì‹œ ì UI ì‚­ì œ
     private void OnDestroy()
     {
         Destroy(EnemyCanvus);
     }
 
-    //»ö¹İÀÀ ¾×¼Ç + ÄğÅ¸ÀÓ ±¸Çö
+    //ìƒ‰ë°˜ì‘ ì•¡ì…˜ êµ¬í˜„
     IEnumerator ColorReactionAction(Color ReactionColor)
     {
-        //»ö±òº° µ¥¹ÌÁö °è»ê
+        //ìƒ‰ ë°˜ì‘ ë°ë¯¸ì§€ ê³„ì‚°
         int ColorReactionDamage = 0;
         if (ReactionColor == PurpleReaction)
             ColorReactionDamage = (int)Mathf.Round(PlayerController.instance.AttackPower * PlayerController.instance.PurpleReactionDamage);
@@ -71,15 +73,15 @@ public class EnemyManager : MonoBehaviour
             ColorReactionDamage = (int)Mathf.Round(PlayerController.instance.AttackPower * PlayerController.instance.YellowReactionDamage);
         else if (ReactionColor == SkyblueReaction)
             ColorReactionDamage = (int)Mathf.Round(PlayerController.instance.AttackPower * PlayerController.instance.SkyblueReactionDamage);
-        this.GetComponent<EnemyController>().HurtEnemy(ColorReactionDamage, 0, null);//µ¥¹ÌÁö ºÎ¿©
+        this.GetComponent<EnemyController>().HurtEnemy(ColorReactionDamage, 0, null);//ë°ë¯¸ì§€ êµ¬í˜„
         
-        isColorReaction = true; //»ö¹İ¿ë ¿©ºÎ true
+        isColorReaction = true; //ìƒ‰ë°˜ì‘ ì—¬ë¶€ true
         yield return new WaitForSeconds(ReColorReactionTime);
-        NowReactionColor = Color.black; //»ö ¿ø»óÅÂ·Î
-        isColorReaction = false; //»ö¹İÀÀ ¿©ºÎ false
+        NowReactionColor = Color.black; //ìƒ‰ ì´ˆê¸°í™”
+        isColorReaction = false; //ìƒ‰ ë°˜ì‘ ì—¬ë¶€ false
     }
 
-    //ÃÖ´ë HpÄÁÆ®·Ñ
+    //í˜„ì¬ HP ì»¨íŠ¸ë¡¤ í•¨ìˆ˜
     public int GSMaxHp
     {
         get
@@ -91,7 +93,7 @@ public class EnemyManager : MonoBehaviour
             MaxHp = value;
         }
     }
-    //ÇöÀç HpÄÁÆ®·Ñ
+    //ìµœëŒ€ HP ì»¨íŠ¸ë¡¤ í•¨ìˆ˜
     public int GSNowHp
     {
         get
@@ -104,7 +106,7 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    //ÇöÀç ¹İÀÀ »ö±ò ÄÁÆ®·Ñ
+    //ë°˜ì‘ ìƒ‰ ì»¨íŠ¸ë¡¤ í•¨ìˆ˜
     public Color GSNowReactionColor
     {
         get

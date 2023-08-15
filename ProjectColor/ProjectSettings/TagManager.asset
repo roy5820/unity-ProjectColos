@@ -8,7 +8,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - PlayerSensor
+  - Sensor
   - Water
   - UI
   - Ground
@@ -22,8 +22,8 @@ TagManager:
   - Player
   - DeadZone
   - TrapZone
-  - 
-  - 
+  - PlayerBullet
+  - EnemyBullet
   - 
   - 
   - 
