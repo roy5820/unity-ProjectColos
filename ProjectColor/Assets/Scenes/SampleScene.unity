@@ -1117,7 +1117,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -2
   m_Sprite: {fileID: 21300000, guid: 1df54f7d791743b4b9cbd767c4f72b62, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1747,6 +1747,10 @@ PrefabInstance:
     - target: {fileID: 3854948991858632425, guid: b2b37194982dbfe498373f3c4b4c81ae, type: 3}
       propertyPath: m_Name
       value: WarfPortal
+      objectReference: {fileID: 0}
+    - target: {fileID: 3854948991858632426, guid: b2b37194982dbfe498373f3c4b4c81ae, type: 3}
+      propertyPath: WarfSceneName
+      value: SampleScene 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2b37194982dbfe498373f3c4b4c81ae, type: 3}
