@@ -54,12 +54,15 @@ public class EnemySmashAttack : MonoBehaviour
         
         foreach (RaycastHit2D hit in hits)//딜레이 이후 플레이어가 공격 범위에 있는 지 이중 체크
         {
-            if (hit.collider.CompareTag("Player") && !m_EnemyManager.isKnockBack && hit.collider.gameObject.layer != LayerMask.NameToLayer("InvcPlayer"))
-             {
-                Transform thisE = gameObject.GetComponent<Transform>();//Enemy의 위치값
-                PlayerController.instance.Hurt(AttackDamage, AttackKnockBackPower, thisE);
-                yield return new WaitForSeconds(AttackTime - AttackDelay);
-             }
+            if (hit.collider != null)
+            {
+                if (hit.collider.CompareTag("Player") && !m_EnemyManager.isKnockBack && hit.collider.gameObject.layer != LayerMask.NameToLayer("InvcPlayer"))
+                {
+                    Transform thisE = gameObject.GetComponent<Transform>();//Enemy의 위치값
+                    PlayerController.instance.Hurt(AttackDamage, AttackKnockBackPower, thisE);
+                    yield return new WaitForSeconds(AttackTime - AttackDelay);
+                }
+            }
         }
         m_EnemyManager.isAttack = false;//공격 여부 false
     }

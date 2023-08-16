@@ -340,6 +340,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CloseRangeEnemiesBase
       objectReference: {fileID: 0}
+    - target: {fileID: 8675180309886356374, guid: 10fa05a3d561bf64d877dbf891c879f8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8675180309886356375, guid: 10fa05a3d561bf64d877dbf891c879f8, type: 3}
       propertyPath: m_RootOrder
       value: 29
@@ -354,7 +358,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8675180309886356375, guid: 10fa05a3d561bf64d877dbf891c879f8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.4703242
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8675180309886356375, guid: 10fa05a3d561bf64d877dbf891c879f8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2231,7 +2235,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5291506469412620209, guid: c1644a03dec23bb41b1fec1ce6ceefbe, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.4703255
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5291506469412620209, guid: c1644a03dec23bb41b1fec1ce6ceefbe, type: 3}
       propertyPath: m_LocalRotation.w

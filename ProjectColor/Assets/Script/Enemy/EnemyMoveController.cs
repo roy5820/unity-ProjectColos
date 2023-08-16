@@ -23,6 +23,10 @@ public class EnemyMoveController : MonoBehaviour
     public GameObject FrontPlatformSensor;
     bool OnFrontGround = false;
 
+    //벽 체크 센서
+    public GameObject WallSensor;
+    bool OnFrontWall = false;
+
     //이동 여부
     bool isMove = false;
 
@@ -44,8 +48,11 @@ public class EnemyMoveController : MonoBehaviour
     private void Update()
     {
         // 절벽 체크
-        if(ScanPlayer)
+        if (ScanPlayer)
+        {
             OnFrontGround = FrontGroundSensor.GetComponent<Sensor>().colSencorState() || FrontPlatformSensor.GetComponent<Sensor>().colSencorState();
+            OnFrontWall = WallSensor.GetComponent<Sensor>().colSencorState();
+        }
 
         // 플레이어 감지
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
@@ -64,10 +71,14 @@ public class EnemyMoveController : MonoBehaviour
                     MoveArrow = 1;
             }
         }
-        //앞으로 갈 공간이 없을 시 유턴 및 일정 시간동안 플레이어 탐지 안함
-        if (!OnFrontGround)
+
+        //앞으로 갈 공간이 없을 시 유턴 및 일정 시간동안 플레이어 탐지 안함 + 계속 같은 자리에 있으면 유턴
+        if (!OnFrontGround || OnFrontWall)
         {
-            OnFrontGround = true;
+            if(!OnFrontGround)
+                OnFrontGround = true;
+            if(OnFrontWall)
+                OnFrontWall = false;
             MoveArrow *= -1;
             StartCoroutine(StopScanPlayer());
         }
