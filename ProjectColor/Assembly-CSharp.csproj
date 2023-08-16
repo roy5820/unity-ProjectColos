@@ -53,7 +53,7 @@
     <UnityVersion>2020.3.46f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+    <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Script\EfGround\DeadZone.cs" />
@@ -67,6 +67,7 @@
     <Compile Include="Assets\Script\Camera\CameraManager.cs" />
     <Compile Include="Assets\Script\AtcObj\ColoringPuzzle\ActResetButton.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyController.cs" />
+    <Compile Include="Assets\Script\Player\Sensor.cs" />
     <Compile Include="Assets\Script\Skill\NomalAttack.cs" />
     <Compile Include="Assets\Script\Effect\DestroyParticle.cs" />
     <Compile Include="Assets\Script\AtcObj\ActMovePlatform.cs" />
@@ -84,7 +85,6 @@
     <Compile Include="Assets\Script\SpcObj\CrimbObj.cs" />
     <Compile Include="Assets\Script\EfGround\TrapPad.cs" />
     <Compile Include="Assets\Script\Other\Sensor.cs" />
-    <Compile Include="Assets\Script\Player\Sensor.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
