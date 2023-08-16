@@ -1361,6 +1361,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 869069008, guid: dd4a35b8c82d5e544886b658d1af9b12, type: 3}
+      propertyPath: items.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1642724356211384170, guid: dd4a35b8c82d5e544886b658d1af9b12, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1375,7 +1379,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1642724356734612564, guid: dd4a35b8c82d5e544886b658d1af9b12, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.180967
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1642724356734612564, guid: dd4a35b8c82d5e544886b658d1af9b12, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1415,10 +1419,67 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1642724356734612565, guid: dd4a35b8c82d5e544886b658d1af9b12, type: 3}
       propertyPath: m_Name
-      value: -----GameManager-----
+      value: -----InGameManager-----
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd4a35b8c82d5e544886b658d1af9b12, type: 3}
+--- !u!1001 &1870226952528535644
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1870226953514456753, guid: 89ee92230cf68b64fbf4d3ca98a5eb94, type: 3}
+      propertyPath: m_RootOrder
+      value: 33
+      objectReference: {fileID: 0}
+    - target: {fileID: 1870226953514456753, guid: 89ee92230cf68b64fbf4d3ca98a5eb94, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1114.853
+      objectReference: {fileID: 0}
+    - target: {fileID: 1870226953514456753, guid: 89ee92230cf68b64fbf4d3ca98a5eb94, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 901.3949
+      objectReference: {fileID: 0}
+    - target: {fileID: 1870226953514456753, guid: 89ee92230cf68b64fbf4d3ca98a5eb94, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1177.6847
+      objectReference: {fileID: 0}
+    - target: {fileID: 1870226953514456753, guid: 89ee92230cf68b64fbf4d3ca98a5eb94, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1870226953514456753, guid: 89ee92230cf68b64fbf4d3ca98a5eb94, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1870226953514456753, guid: 89ee92230cf68b64fbf4d3ca98a5eb94, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1870226953514456753, guid: 89ee92230cf68b64fbf4d3ca98a5eb94, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1870226953514456753, guid: 89ee92230cf68b64fbf4d3ca98a5eb94, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1870226953514456753, guid: 89ee92230cf68b64fbf4d3ca98a5eb94, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1870226953514456753, guid: 89ee92230cf68b64fbf4d3ca98a5eb94, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1870226953514456759, guid: 89ee92230cf68b64fbf4d3ca98a5eb94, type: 3}
+      propertyPath: m_Name
+      value: ItemDatabase
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 89ee92230cf68b64fbf4d3ca98a5eb94, type: 3}
 --- !u!1001 &2311855109555038452
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1482,6 +1543,10 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 8114d84782127d5419e62376a9dd2ad3, type: 2}
+    - target: {fileID: 2311855110513187795, guid: 6050479a3d0c9ed4bbe6f364de0b4f08, type: 3}
+      propertyPath: GreenSkillKnockBackPower
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2311855110513187797, guid: 6050479a3d0c9ed4bbe6f364de0b4f08, type: 3}
       propertyPath: m_Name
       value: Player

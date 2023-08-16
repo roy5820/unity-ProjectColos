@@ -85,6 +85,8 @@
     <Compile Include="Assets\Script\SpcObj\CrimbObj.cs" />
     <Compile Include="Assets\Script\EfGround\TrapPad.cs" />
     <Compile Include="Assets\Script\Other\Sensor.cs" />
+    <Compile Include="Assets\Script\Item\ItemManager.cs" />
+    <Compile Include="Assets\Script\Item\ItemDatabase.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
