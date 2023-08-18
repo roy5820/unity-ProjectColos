@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour
 
         //플레이어 스폰
         FindPlayer = GameObject.FindWithTag("Player");
-        SpawnPoint = GameObject.Find("SpawnPoint");
+        SpawnPoint = GameObject.Find("StartSpawnPoint");
         if (FindPlayer == null)
         {
             FindPlayer = Instantiate(PlayerPre);
@@ -92,7 +92,7 @@ public class GameManager : MonoBehaviour
     {
         //씬 시작 시 페이드 아웃 적용
         StartCoroutine(PadeImageAndChangeScene(PadeOutTime, null));
-        SpawnPoint = GameObject.Find("SpawnPoint");
+        SpawnPoint = GameObject.Find("StartSpawnPoint");
 
         //플레이어 스폰
         if (FindPlayer != null)

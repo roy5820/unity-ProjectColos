@@ -62,6 +62,6 @@ public class ItemManager : MonoBehaviour
     public void UpgradeGreenSkill()
     {
         playerController.GreenSkillCoefficient += 0.3f;
-        playerController.GreenSkillKnockBackPower += 4f;
+        playerController.GreenSkillKnockBackPower += 10f;
     }
 }

@@ -48,7 +48,7 @@ MonoBehaviour:
   m_MinSize: {x: 678, y: 492}
   m_MaxSize: {x: 14001, y: 14042}
   vertical: 0
-  controlID: 110
+  controlID: 90
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -226,7 +226,7 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 492}
   m_MaxSize: {x: 10001, y: 14042}
   vertical: 1
-  controlID: 111
+  controlID: 91
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -251,7 +251,7 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 221}
   m_MaxSize: {x: 8003, y: 4021}
   vertical: 0
-  controlID: 112
+  controlID: 92
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -406,22 +406,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefab/other
+    - Assets/Prefab/Enemy
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Prefab/other
+  - Assets/Prefab/Enemy
   m_LastFoldersGridSize: -1
   m_LastProjectPath: "C:\\Users\\troy5\\OneDrive\\\uBB38\uC11C\\GitHub\\unity-ProjectColos\\ProjectColor"
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 95.80002}
-    m_SelectedIDs: ca5b0000
-    m_LastClickedID: 23498
-    m_ExpandedIDs: 000000000e480000384800003c48000000ca9a3b
+    scrollPos: {x: 0, y: 79}
+    m_SelectedIDs: 54480000
+    m_LastClickedID: 18516
+    m_ExpandedIDs: 0000000010480000404800004448000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -449,7 +449,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000000e480000
+    m_ExpandedIDs: 0000000010480000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -570,9 +570,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 86a4ffff
+      m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 30d0ffff08dbffff6edbffff74dbffff96dcffff54deffff3ee4ffff84edffff8eedffffd6f4ffff5af6ffff60fbfffff4ffffff
+      m_ExpandedIDs: 5caeffff0cb0ffffb6b1ffff60b3ffffd4b5ffffe2ccfffffaceffffb4ddffff78dfffff8ce7ffff4afaffff00fbffff60fbfffff4ffffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -632,9 +632,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 1030.5555, y: 433.10092, z: -124.19567}
+    m_Target: {x: 35.679516, y: 0.8390925, z: -1.8345097}
     speed: 2
-    m_Value: {x: 1030.5555, y: 433.10092, z: -124.19567}
+    m_Value: {x: 35.679516, y: 0.8390925, z: -1.8345097}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -685,9 +685,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 647.0366
+    m_Target: 3.8781364
     speed: 2
-    m_Value: 647.0366
+    m_Value: 3.8781364
   m_Ortho:
     m_Target: 1
     speed: 2

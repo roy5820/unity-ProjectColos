@@ -62,7 +62,7 @@ public class EnemyController : MonoBehaviour
         EManager.isKnockBack = true;//넉백상태 설정
         float isTime = 0f;
 
-        while (isTime < 0.3f)
+        while (isTime < 0.5f)
         {
             isTime += Time.deltaTime;
 

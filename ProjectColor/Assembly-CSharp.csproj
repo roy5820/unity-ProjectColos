@@ -56,6 +56,7 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Script\Other\SceneChangeListener.cs" />
     <Compile Include="Assets\Script\EfGround\DeadZone.cs" />
     <Compile Include="Assets\Script\Enemy\EnemySmashAttack.cs" />
     <Compile Include="Assets\Script\SpcObj\WarflChangScene.cs" />
@@ -87,7 +88,6 @@
     <Compile Include="Assets\Script\SpcObj\CrimbObj.cs" />
     <Compile Include="Assets\Script\EfGround\TrapPad.cs" />
     <Compile Include="Assets\Script\Other\Sensor.cs" />
-    <Compile Include="Assets\Script\Other\SceneChangeListener.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
