@@ -46,7 +46,8 @@ public class GameManager : MonoBehaviour
 
     //플레이어 스폰 관련
     public GameObject PlayerPre;
-    public GameObject SpawnPoint;
+    private GameObject SpawnPoint;
+    GameObject FindPlayer;
 
     // Start is called before the first frame update
     void Start()
@@ -62,17 +63,14 @@ public class GameManager : MonoBehaviour
         StartCoroutine(PadeImageAndChangeScene(PadeOutTime, null));
 
         //플레이어 스폰
-        GameObject FindPlayer = GameObject.FindWithTag("Player");
-
+        FindPlayer = GameObject.FindWithTag("Player");
+        SpawnPoint = GameObject.Find("SpawnPoint");
         if (FindPlayer == null)
         {
             FindPlayer = Instantiate(PlayerPre);
+            FindPlayer.GetComponent<Transform>().position = SpawnPoint.GetComponent<Transform>().position;
         }
-        else
-        {
-            FindPlayer.SetActive(true);
-        }
-        FindPlayer.GetComponent<Transform>().position = SpawnPoint.GetComponent<Transform>().position;
+        
     }
 
     private void Awake()
@@ -92,22 +90,16 @@ public class GameManager : MonoBehaviour
     // 다른 씬으로 이동할 때 이벤트 호출
     public void ChangeScene()
     {
-        Debug.Log("으앵 왜 불러~~");
         //씬 시작 시 페이드 아웃 적용
         StartCoroutine(PadeImageAndChangeScene(PadeOutTime, null));
+        SpawnPoint = GameObject.Find("SpawnPoint");
 
         //플레이어 스폰
-        GameObject FindPlayer = GameObject.FindWithTag("Player");
-
-        if (FindPlayer == null)
-        {
-            FindPlayer = Instantiate(PlayerPre);
-        }
-        else
+        if (FindPlayer != null)
         {
             FindPlayer.SetActive(true);
+            FindPlayer.GetComponent<Transform>().position = SpawnPoint.GetComponent<Transform>().position;
         }
-        FindPlayer.GetComponent<Transform>().position = SpawnPoint.GetComponent<Transform>().position;
 
         // 이벤트 발생
         OnSceneChanged?.Invoke();
