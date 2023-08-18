@@ -84,8 +84,12 @@ public class EnemyController : MonoBehaviour
         //플레이어와 충돌시 데미지
         if (other.gameObject.tag == "Player")
         {
+            PlayerController playerController;//플레이어 컨트롤러 연결을 위한 변수 선언
+            //플레이어컨트롤러 변수 초기화
+            playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+
             Transform thisE = gameObject.GetComponent<Transform>();//Enemy의 위치값
-            PlayerController.instance.Hurt(EnemyDamage, EnemyKnockBackPower, thisE);//플레이어 피격 함수 호출
+            playerController.Hurt(EnemyDamage, EnemyKnockBackPower, thisE);//플레이어 피격 함수 호출
         }
     }
 }

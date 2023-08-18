@@ -58,8 +58,11 @@ public class EnemySmashAttack : MonoBehaviour
             {
                 if (hit.collider.CompareTag("Player") && !m_EnemyManager.isKnockBack && hit.collider.gameObject.layer != LayerMask.NameToLayer("InvcPlayer"))
                 {
+                    //플레이어 컨트롤러 연결
+                    PlayerController playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+
                     Transform thisE = gameObject.GetComponent<Transform>();//Enemy의 위치값
-                    PlayerController.instance.Hurt(AttackDamage, AttackKnockBackPower, thisE);
+                    playerController.Hurt(AttackDamage, AttackKnockBackPower, thisE);
                     yield return new WaitForSeconds(AttackTime - AttackDelay);
                 }
             }

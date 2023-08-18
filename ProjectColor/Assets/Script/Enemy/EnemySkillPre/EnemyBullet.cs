@@ -5,6 +5,8 @@ using UnityEngine;
 public class EnemyBullet : MonoBehaviour
 {
     Rigidbody2D RBody;
+    private PlayerController playerController;//플레이어 컨트롤러
+
     Color NColor = Color.red; //빨간색
 
     private int SkillDamage = 0; //스킬 데미지
@@ -19,6 +21,9 @@ public class EnemyBullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //플레이어컨트롤러 변수 초기화
+        playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+
         //공격 이펙트 생성
         //AttackEf = Instantiate(AttackEfPre);
         //AttackEf.transform.position = new Vector2(this.transform.position.x + (0.5f * EfArrow), this.transform.position.y);
@@ -39,7 +44,7 @@ public class EnemyBullet : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             Transform thisE = gameObject.GetComponent<Transform>();//Enemy의 위치값
-            PlayerController.instance.Hurt(SkillDamage, KnockBackPower, thisE);//플레이어 피격 함수 호출
+            playerController.Hurt(SkillDamage, KnockBackPower, thisE);//플레이어 피격 함수 호출
         }
     }
 

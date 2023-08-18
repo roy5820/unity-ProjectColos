@@ -5,9 +5,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public static PlayerController instance = null;
-
-   
     //초기 변수 선언
     Rigidbody2D RBody;
     float RBodyGravity;
@@ -150,7 +147,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     // Update is called once per frame

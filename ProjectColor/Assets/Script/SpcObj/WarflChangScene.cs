@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class WarflChangScene : MonoBehaviour
 {
-    public string WarfSceneName;
+    public string WarfSceneName; //이동할 씬 이름
+    public bool GetItems = true; //아이템 획득 여부
     // Start is called before the first frame update
     void Start()
     {
@@ -22,9 +22,20 @@ public class WarflChangScene : MonoBehaviour
     {
          if(ohter.tag == "Player")
         {
-            GameObject Manager = GameObject.Find("GameManager");
-            if(Manager.GetComponent<GameManager>().PadeInScreen())
-                SceneManager.LoadScene(WarfSceneName);
+            GameManager Manager = GameObject.Find("GameManager").GetComponent<GameManager>();
+            //아이템 획득 여부에 다른 처리
+            if (GetItems)
+            {
+                //아이템 선택 함수 호출
+                StartCoroutine(Manager.SelectItemAndChangeScene(WarfSceneName));
+            }
+            else
+            {
+                //씬 이동 함수 호출
+                Manager.ChangScen(WarfSceneName);
+            }
+            
+                
         }  
     }
 }

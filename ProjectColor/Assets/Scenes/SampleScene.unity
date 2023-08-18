@@ -853,6 +853,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6780848938454324911, guid: 7743d745d2b1ab54aa481c7166ca0a6a, type: 3}
   m_PrefabInstance: {fileID: 6780848936966266684}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1672695792 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1870226953514456752, guid: 89ee92230cf68b64fbf4d3ca98a5eb94, type: 3}
+  m_PrefabInstance: {fileID: 1870226952528535644}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5ed6722f99cbea46937c0689a83c4b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1708302751
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1362,7 +1373,11 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 869069008, guid: dd4a35b8c82d5e544886b658d1af9b12, type: 3}
-      propertyPath: items.Array.size
+      propertyPath: itemDatabase
+      value: 
+      objectReference: {fileID: 1672695792}
+    - target: {fileID: 2021482643, guid: dd4a35b8c82d5e544886b658d1af9b12, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1642724356211384170, guid: dd4a35b8c82d5e544886b658d1af9b12, type: 3}
@@ -1501,7 +1516,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2311855110513187792, guid: 6050479a3d0c9ed4bbe6f364de0b4f08, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.8
+      value: 43.65
       objectReference: {fileID: 0}
     - target: {fileID: 2311855110513187792, guid: 6050479a3d0c9ed4bbe6f364de0b4f08, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1848,8 +1863,12 @@ PrefabInstance:
       value: WarfPortal
       objectReference: {fileID: 0}
     - target: {fileID: 3854948991858632426, guid: b2b37194982dbfe498373f3c4b4c81ae, type: 3}
+      propertyPath: GetItems
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3854948991858632426, guid: b2b37194982dbfe498373f3c4b4c81ae, type: 3}
       propertyPath: WarfSceneName
-      value: SampleScene 1
+      value: SampleScene
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2b37194982dbfe498373f3c4b4c81ae, type: 3}
@@ -2106,6 +2125,10 @@ PrefabInstance:
     - target: {fileID: 6473817917361239156, guid: 79a3230b5e4e896468df8e54a23a4029, type: 3}
       propertyPath: m_Name
       value: ColoringPuzzleBase
+      objectReference: {fileID: 0}
+    - target: {fileID: 6473817917361239156, guid: 79a3230b5e4e896468df8e54a23a4029, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6473817917361239159, guid: 79a3230b5e4e896468df8e54a23a4029, type: 3}
       propertyPath: m_RootOrder

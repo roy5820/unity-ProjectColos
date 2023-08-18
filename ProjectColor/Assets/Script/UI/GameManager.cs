@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -33,11 +34,19 @@ public class GameManager : MonoBehaviour
     public float PadeInTime = 1.5f;
     public float PadeOutTime = 1.5f;
 
+    //아이템 메니저
+    private ItemManager itemManager;
+    public GameObject itemPanel;//아이템 선택 팝업 페널
+    bool isSelectItem = false; // 아이템 선택 여부
+
     // Start is called before the first frame update
     void Start()
     {
-        //
-        PadeOutScreen();
+        //아이템 메니저 초기화
+        itemManager = this.GetComponent<ItemManager>();
+
+        //씬 시작 시 페이드 아웃 적용
+        StartCoroutine(PadeImageAndChangeScene(PadeOutTime, null));
         //시작 체력, 스태미나 최대체력, 스태미나로 설정
         NowHealth = MaxHealth;
         NowStamina = MaxStamina;
@@ -46,6 +55,13 @@ public class GameManager : MonoBehaviour
     //싱클톤 패턴 초기화
     private void Awake()
     {
+        //싱글톤 패턴 초기 값 설정
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         instance = this;
     }
 
@@ -127,37 +143,85 @@ public class GameManager : MonoBehaviour
             if (NowHealth < 0) NowHealth = 0;
         }
     }
-    //페이트 인을 실행하는 함수
-    public bool PadeInScreen()
+    //씬 체인지 함수
+    public bool ChangScen(string SceneName)
     {
-        Color AColor = PadeScreen.GetComponent<Image>().color;
-        AColor.a = 1f;
-        StartCoroutine(PadeImage(AColor, PadeInTime));
-        return true;
-    }
-    //페이트 아웃을 실행하는 함수
-    public bool PadeOutScreen()
-    {
-        Color AColor = PadeScreen.GetComponent<Image>().color;
-        AColor.a = 0f;
-        StartCoroutine(PadeImage(AColor, PadeOutTime));
+        
+        StartCoroutine(PadeImageAndChangeScene(PadeInTime, SceneName));
         return true;
     }
 
-    //이미지에 페이드 인/아웃 효과를 주는 코루틴 EndColor: 변경할 색, LimitTime: 페이드할 떄까지 걸리는 시간
-    IEnumerator PadeImage(Color EndColor, float LimitTime)
+
+    //씬 전환 및 씬 전환 시 페이드 인, 아웃을 주는 코루틴 
+    //LimitTime: 페이드할 떄까지 걸리는 시간, SceneName: 이동할 씬 이름 없으면, 페이드 아웃 적용, GetItem: 아이템 획득 여부
+    IEnumerator PadeImageAndChangeScene(float LimitTime, string SceneName)
     {
         float isTime = 0f;//시간제는 친구
+        Color StartColor = PadeScreen.GetComponent<Image>().color; //시작 색깔 설정
+        //이동할 씬 값에 따라 변경할 목표 색 설정
+        Color AColor = StartColor;
 
-        while(isTime <= LimitTime)
+        if(SceneName == null)
+            AColor.a = 0f;
+        else
+            AColor.a = 1f;
+
+        while (isTime <= LimitTime)
         {
-            Color StartColor = PadeScreen.GetComponent<Image>().color;
+            
             float NomalizedTime = isTime / LimitTime;
 
-            PadeScreen.GetComponent<Image>().color = Color.Lerp(StartColor, EndColor, NomalizedTime);
+            PadeScreen.GetComponent<Image>().color = Color.Lerp(StartColor, AColor, NomalizedTime);
             isTime += Time.deltaTime;
             yield return null;
         }
-        
+        //페이드 적용 이후 씬 이동
+        if(SceneName != null)
+            SceneManager.LoadScene(SceneName);
     }
+
+    //아이템 선택창 생성 코루틴
+    public IEnumerator SelectItemAndChangeScene(string SceneName)
+    {
+        itemPanel.SetActive(true);//아이템 페널 활성화
+        GameObject.FindWithTag("Player").SetActive(false); //플레이어 비활성화
+
+        //아이템 패널의 자식들을 for문으로 배열에 할당
+        int childCnt = itemPanel.transform.childCount;
+        GameObject[] items = new GameObject[childCnt];
+        for (int i = 0; i < childCnt; i++)
+            items[i] = itemPanel.transform.GetChild(i).gameObject;
+
+        //아이템 데이터 베이스에서 데이터 가져오기
+        foreach(GameObject item in items)
+        {
+            Item randomItem = itemManager.GetRandomItem();//아이템 데이터 베이스에서 아이템 정보 추출
+            Debug.Log(item.transform.GetChild(1));
+            if (randomItem == null)//데이터 베이스에 아이템이 없으면 break
+                break;
+            
+            item.transform.GetChild(0).GetComponent<Image>().sprite = randomItem.icon;//아이콘 설정
+            item.transform.GetChild(1).GetComponent<Text>().text = randomItem.itemName;//아이템 이름 설정
+            item.transform.GetChild(2).GetComponent<Text>().text = randomItem.description;//아이템 설정
+            item.transform.GetChild(3).GetComponent<Text>().text = randomItem.executionFunction;//아이템 함수 설정
+        }
+
+        //아이템 선택 할때까지 무겐 지옥
+        while (!isSelectItem)
+        {
+            yield return null;
+        }
+
+        StartCoroutine(PadeImageAndChangeScene(PadeInTime, SceneName));
+    }
+
+    //아이템 선택 함수
+    public void SelectItem(GameObject thisObj)
+    {
+        itemPanel.SetActive(false);//아이템 페널 비활성화
+        isSelectItem = true;//아이템 선택 여부 활성화
+
+        this.SendMessage(thisObj.transform.GetChild(3).GetComponent<Text>().text);
+    }
+
 }

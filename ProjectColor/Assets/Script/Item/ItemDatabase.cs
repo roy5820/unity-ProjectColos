@@ -15,5 +15,4 @@ public class Item
 public class ItemDatabase : MonoBehaviour
 {
     public List<Item> items;
-   
 }

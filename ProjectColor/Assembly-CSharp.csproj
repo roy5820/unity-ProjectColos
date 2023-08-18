@@ -65,9 +65,11 @@
     <Compile Include="Assets\Script\AtcObj\ColoringPuzzle\ActColoringObj.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyShotingAttack.cs" />
     <Compile Include="Assets\Script\Camera\CameraManager.cs" />
+    <Compile Include="Assets\Script\Item\ItemDatabase.cs" />
     <Compile Include="Assets\Script\AtcObj\ColoringPuzzle\ActResetButton.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyController.cs" />
     <Compile Include="Assets\Script\Player\Sensor.cs" />
+    <Compile Include="Assets\Script\Item\ItemManager.cs" />
     <Compile Include="Assets\Script\Skill\NomalAttack.cs" />
     <Compile Include="Assets\Script\Effect\DestroyParticle.cs" />
     <Compile Include="Assets\Script\AtcObj\ActMovePlatform.cs" />
@@ -85,8 +87,6 @@
     <Compile Include="Assets\Script\SpcObj\CrimbObj.cs" />
     <Compile Include="Assets\Script\EfGround\TrapPad.cs" />
     <Compile Include="Assets\Script\Other\Sensor.cs" />
-    <Compile Include="Assets\Script\Item\ItemManager.cs" />
-    <Compile Include="Assets\Script\Item\ItemDatabase.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

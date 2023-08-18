@@ -22,11 +22,14 @@ public class DeadZone : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
+            //플레이어 컨트롤러 연결
+            PlayerController playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+
             other.gameObject.GetComponent<Transform>().position = SpawnPoint.position;
 
             Transform thisT = gameObject.GetComponent<Transform>();
 
-            PlayerController.instance.Hurt(Damage, 0, thisT);
+            playerController.Hurt(Damage, 0, thisT);
         }
         else if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {

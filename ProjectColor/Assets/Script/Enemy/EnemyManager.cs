@@ -65,14 +65,17 @@ public class EnemyManager : MonoBehaviour
     //색반응 액션 구현
     IEnumerator ColorReactionAction(Color ReactionColor)
     {
+        //플레이어 컨트롤러 연결
+        PlayerController playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+
         //색 반응 데미지 계산
         int ColorReactionDamage = 0;
         if (ReactionColor == PurpleReaction)
-            ColorReactionDamage = (int)Mathf.Round(PlayerController.instance.AttackPower * PlayerController.instance.PurpleReactionDamage);
+            ColorReactionDamage = (int)Mathf.Round(playerController.AttackPower * playerController.PurpleReactionDamage);
         else if (ReactionColor == YellowReaction)
-            ColorReactionDamage = (int)Mathf.Round(PlayerController.instance.AttackPower * PlayerController.instance.YellowReactionDamage);
+            ColorReactionDamage = (int)Mathf.Round(playerController.AttackPower * playerController.YellowReactionDamage);
         else if (ReactionColor == SkyblueReaction)
-            ColorReactionDamage = (int)Mathf.Round(PlayerController.instance.AttackPower * PlayerController.instance.SkyblueReactionDamage);
+            ColorReactionDamage = (int)Mathf.Round(playerController.AttackPower * playerController.SkyblueReactionDamage);
         this.GetComponent<EnemyController>().HurtEnemy(ColorReactionDamage, 0, null);//데미지 구현
         
         isColorReaction = true; //색반응 여부 true

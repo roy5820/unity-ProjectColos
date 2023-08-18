@@ -18,7 +18,10 @@ public class TrapPad : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            PlayerController.instance.Hurt(TrapDamage, KnockbackForce, thisT);//플레이어 피격함수 호출
+            //플레이어 컨트롤러 연결
+            PlayerController playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+
+            playerController.Hurt(TrapDamage, KnockbackForce, thisT);//플레이어 피격함수 호출
         }
         else if(other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
