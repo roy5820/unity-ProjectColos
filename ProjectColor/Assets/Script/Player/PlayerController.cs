@@ -147,7 +147,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+       DontDestroyOnLoad(gameObject);
     }
 
     // Update is called once per frame

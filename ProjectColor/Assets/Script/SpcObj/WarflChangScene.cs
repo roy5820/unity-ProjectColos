@@ -22,17 +22,16 @@ public class WarflChangScene : MonoBehaviour
     {
          if(ohter.tag == "Player")
         {
-            GameManager Manager = GameObject.Find("GameManager").GetComponent<GameManager>();
             //아이템 획득 여부에 다른 처리
             if (GetItems)
             {
                 //아이템 선택 함수 호출
-                StartCoroutine(Manager.SelectItemAndChangeScene(WarfSceneName));
+                StartCoroutine(GameManager.instance.SelectItemAndChangeScene(WarfSceneName));
             }
             else
             {
                 //씬 이동 함수 호출
-                Manager.ChangScen(WarfSceneName);
+                GameManager.instance.ChangScen(WarfSceneName);
             }
             
                 

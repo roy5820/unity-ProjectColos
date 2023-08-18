@@ -41,7 +41,6 @@ public class EnemyMoveController : MonoBehaviour
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
         EManager = GetComponent<EnemyManager>();
     }
 
@@ -55,20 +54,25 @@ public class EnemyMoveController : MonoBehaviour
         }
 
         // 플레이어 감지
-        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
-        Vector2 direction = (player.position - transform.position).normalized;// 앞 뒤 거리 계산
-
-        //적 오브젝트 이동 방향 설정
-        //플레이어 탐색 하여 해당 방향으로 이동
-        if (distanceToPlayer < detectionRange && ScanPlayer)
+        if(GameObject.FindGameObjectWithTag("Player") != null)
+            player = GameObject.FindGameObjectWithTag("Player").transform;
+        if(player != null)
         {
-            // 플레이어를 방향으로 MoveArrow 변경 + 공격시 방향 전환 X
-            if (OnFrontGround && !EManager.isAttack)
+            float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+            Vector2 direction = (player.position - transform.position).normalized;// 앞 뒤 거리 계산
+
+            //적 오브젝트 이동 방향 설정
+            //플레이어 탐색 하여 해당 방향으로 이동
+            if (distanceToPlayer < detectionRange && ScanPlayer)
             {
-                if (direction.x < -0.1f)
-                    MoveArrow = -1;
-                else if(direction.x > 0.1f)
-                    MoveArrow = 1;
+                // 플레이어를 방향으로 MoveArrow 변경 + 공격시 방향 전환 X
+                if (OnFrontGround && !EManager.isAttack)
+                {
+                    if (direction.x < -0.1f)
+                        MoveArrow = -1;
+                    else if (direction.x > 0.1f)
+                        MoveArrow = 1;
+                }
             }
         }
 

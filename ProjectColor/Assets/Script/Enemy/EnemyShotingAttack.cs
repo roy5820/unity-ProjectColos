@@ -22,23 +22,27 @@ public class EnemyShotingAttack : MonoBehaviour
     {
         //EnemyManager 변수 초기화
         m_EnemyManager = this.GetComponent<EnemyManager>();
-        //플레이어 위치값 구하기 위한 변수 초기화
-        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     // Update is called once per frame
     void Update()
     {
-        float MoveArrow = this.GetComponent<EnemyMoveController>().MoveArrow; // 공격 방향을 위해 EnemyMoveController에서 이동 방향 구해오기
-        float distanceToPlayer = Vector2.Distance(transform.position, player.position); //플레이어 탐지
-        //공격 번위 안에 플레이어가 있을 시 원거리 공격 발사
-        if (distanceToPlayer <= AttackUseRange && !m_EnemyManager.isAttack && !m_EnemyManager.isKnockBack)
+        //플레이어 감지
+        if (GameObject.FindGameObjectWithTag("Player") != null)
+            player = GameObject.FindGameObjectWithTag("Player").transform;
+        if (player != null)
         {
-            Transform playerPos = player.transform;
-            Vector3 playerCenter = player.position + new Vector3(0f, player.GetComponent<Collider2D>().bounds.extents.y, 0f);
-            Vector2 playerDirection = (playerCenter - this.transform.position).normalized;//플레이어가 있는 방향 계산
+            float MoveArrow = this.GetComponent<EnemyMoveController>().MoveArrow; // 공격 방향을 위해 EnemyMoveController에서 이동 방향 구해오기
+            float distanceToPlayer = Vector2.Distance(transform.position, player.position); //플레이어 탐지
+                                                                                            //공격 번위 안에 플레이어가 있을 시 원거리 공격 발사
+            if (distanceToPlayer <= AttackUseRange && !m_EnemyManager.isAttack && !m_EnemyManager.isKnockBack)
+            {
+                Transform playerPos = player.transform;
+                Vector3 playerCenter = player.position + new Vector3(0f, player.GetComponent<Collider2D>().bounds.extents.y, 0f);
+                Vector2 playerDirection = (playerCenter - this.transform.position).normalized;//플레이어가 있는 방향 계산
 
-            StartCoroutine(ShootingAttack(playerDirection));
+                StartCoroutine(ShootingAttack(playerDirection));
+            }
         }
     }
 

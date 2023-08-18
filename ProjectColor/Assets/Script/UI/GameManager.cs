@@ -3,11 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
 
 public class GameManager : MonoBehaviour
 {
     //싱클톤 패턴화
     public static GameManager instance = null;
+
+    // 씬 변환 시 체크할 이벤트 변수
+    public event Action OnSceneChanged;
+
     // 색깔 선택 관련
     public Image nowColor;
     public Slider HealthBar;
@@ -39,30 +44,73 @@ public class GameManager : MonoBehaviour
     public GameObject itemPanel;//아이템 선택 팝업 페널
     bool isSelectItem = false; // 아이템 선택 여부
 
+    //플레이어 스폰 관련
+    public GameObject PlayerPre;
+    public GameObject SpawnPoint;
+
     // Start is called before the first frame update
     void Start()
     {
         //아이템 메니저 초기화
         itemManager = this.GetComponent<ItemManager>();
 
-        //씬 시작 시 페이드 아웃 적용
-        StartCoroutine(PadeImageAndChangeScene(PadeOutTime, null));
         //시작 체력, 스태미나 최대체력, 스태미나로 설정
         NowHealth = MaxHealth;
         NowStamina = MaxStamina;
+
+        //씬 시작 시 페이드 아웃 적용
+        StartCoroutine(PadeImageAndChangeScene(PadeOutTime, null));
+
+        //플레이어 스폰
+        GameObject FindPlayer = GameObject.FindWithTag("Player");
+
+        if (FindPlayer == null)
+        {
+            FindPlayer = Instantiate(PlayerPre);
+        }
+        else
+        {
+            FindPlayer.SetActive(true);
+        }
+        FindPlayer.GetComponent<Transform>().position = SpawnPoint.GetComponent<Transform>().position;
     }
 
-    //싱클톤 패턴 초기화
     private void Awake()
     {
-        //싱글톤 패턴 초기 값 설정
-        if (instance != null && instance != this)
+        // 다른 씬으로 넘어가더라도 이 객체를 유지하기 위해 싱글톤 패턴을 사용
+        if (instance == null)
         {
-            Destroy(gameObject);
-            return;
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
         }
+        else
+        {
+            Destroy(gameObject); // 이미 인스턴스가 있다면 이 객체 파괴
+        }
+    }
 
-        instance = this;
+    // 다른 씬으로 이동할 때 이벤트 호출
+    public void ChangeScene()
+    {
+        Debug.Log("으앵 왜 불러~~");
+        //씬 시작 시 페이드 아웃 적용
+        StartCoroutine(PadeImageAndChangeScene(PadeOutTime, null));
+
+        //플레이어 스폰
+        GameObject FindPlayer = GameObject.FindWithTag("Player");
+
+        if (FindPlayer == null)
+        {
+            FindPlayer = Instantiate(PlayerPre);
+        }
+        else
+        {
+            FindPlayer.SetActive(true);
+        }
+        FindPlayer.GetComponent<Transform>().position = SpawnPoint.GetComponent<Transform>().position;
+
+        // 이벤트 발생
+        OnSceneChanged?.Invoke();
     }
 
     // Update is called once per frame
@@ -165,7 +213,6 @@ public class GameManager : MonoBehaviour
             AColor.a = 0f;
         else
             AColor.a = 1f;
-
         while (isTime <= LimitTime)
         {
             
@@ -196,7 +243,7 @@ public class GameManager : MonoBehaviour
         foreach(GameObject item in items)
         {
             Item randomItem = itemManager.GetRandomItem();//아이템 데이터 베이스에서 아이템 정보 추출
-            Debug.Log(item.transform.GetChild(1));
+
             if (randomItem == null)//데이터 베이스에 아이템이 없으면 break
                 break;
             
@@ -223,5 +270,4 @@ public class GameManager : MonoBehaviour
 
         this.SendMessage(thisObj.transform.GetChild(3).GetComponent<Text>().text);
     }
-
 }

@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1536
     height: 772.8
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Hierarchy
   m_RootView: {fileID: 6}
   m_MinSize: {x: 875, y: 392}
   m_MaxSize: {x: 10000, y: 10000}
@@ -406,22 +406,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Script/Enemy
+    - Assets/Script/Other
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Script/Enemy
+  - Assets/Script/Other
   m_LastFoldersGridSize: -1
   m_LastProjectPath: "C:\\Users\\troy5\\OneDrive\\\uBB38\uC11C\\GitHub\\unity-ProjectColos\\ProjectColor"
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 207.80002}
-    m_SelectedIDs: 94480000
-    m_LastClickedID: 18580
-    m_ExpandedIDs: 0000000076480000
+    scrollPos: {x: 0, y: 287.80002}
+    m_SelectedIDs: b6480000
+    m_LastClickedID: 18614
+    m_ExpandedIDs: 0000000076480000a2480000a648000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -474,8 +474,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 16060000
-    m_LastClickedInstanceID: 1558
+    m_SelectedInstanceIDs: 
+    m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c623000000000000
     m_RenameOverlay:
@@ -570,9 +570,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: 60fbffff
+      m_SelectedIDs: e067feff
+      m_LastClickedID: -104480
+      m_ExpandedIDs: 1684feff5487feffba8bfeffe2b4fefff0cafefff6cafeff12ccfeff34cffeff3ecffeffcef5feff101effff0c22ffff7222ffff7622ffff9223ffff4026ffff4a26ffff2828ffff3228ffff3e6dffff486dffff9e82ffffba83ffffe099ffffe499ffffee99ffff5ea4ffff40a6ffff52abffff1eadffff28adffff50b4ffff1cb6ffff26b6ffff0cc0ffff8ac4ffff56c6ffffcac6ffffe8cbffff40d9ffffd4dcffff5ce6ffff7cf5ffff80f5ffff8af5ffff60fbfffff4ffffff0e4a0000b0a600009002010086250100325b0100
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -632,9 +632,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 40.826202, y: 0.6464747, z: -1.2102405}
+    m_Target: {x: 46.036694, y: -2.5312169, z: 0}
     speed: 2
-    m_Value: {x: 40.826202, y: 0.6464747, z: -1.2102405}
+    m_Value: {x: 40.26427, y: -0.7983942, z: 0}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -685,9 +685,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 8.733817
+    m_Target: 10
     speed: 2
-    m_Value: 8.733817
+    m_Value: 1.323775
   m_Ortho:
     m_Target: 1
     speed: 2

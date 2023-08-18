@@ -14,13 +14,18 @@ public class ItemManager : MonoBehaviour
     {
         // 사용 가능한 아이템 리스트 초기화
         availableItems = new List<Item>(itemDatabase.items);
-
-        //플레이어컨트롤러 변수 초기화
-        playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
     }
+
+    private void Update()
+    {
+        if (playerController == null)
+            playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+    }
+
     //아이템 데이터베이스에서 랜덤 아이템 추출하기
     public Item GetRandomItem()
     {
+
         if (availableItems.Count == 0)
         {
             Debug.LogWarning("No more available items.");

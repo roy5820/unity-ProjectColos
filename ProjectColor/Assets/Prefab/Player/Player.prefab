@@ -287,8 +287,8 @@ GameObject:
   - component: {fileID: 2311855110513187792}
   - component: {fileID: 2311855110513187794}
   - component: {fileID: 2311855110513187795}
-  - component: {fileID: 2311855110513187799}
   - component: {fileID: 2311855110513187798}
+  - component: {fileID: 6823577731501022814}
   m_Layer: 14
   m_Name: Player
   m_TagString: Player
@@ -393,14 +393,6 @@ MonoBehaviour:
   PurpleReactionDamage: 1.5
   YellowReactionDamage: 1.5
   SkyblueReactionDamage: 2
---- !u!81 &2311855110513187799
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2311855110513187797}
-  m_Enabled: 1
 --- !u!70 &2311855110513187798
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -417,6 +409,14 @@ CapsuleCollider2D:
   m_Offset: {x: 0.0742712, y: 1.2454371}
   m_Size: {x: 0.8267946, y: 2.5151396}
   m_Direction: 0
+--- !u!81 &6823577731501022814
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2311855110513187797}
+  m_Enabled: 1
 --- !u!1 &2311855110788574859
 GameObject:
   m_ObjectHideFlags: 0
