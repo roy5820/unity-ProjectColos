@@ -68,6 +68,7 @@ public class PlayerController : MonoBehaviour
 
     //Player Hurt 관련 변수 선언
     private bool isHurt = false;
+    bool isAniHurt = false;
     bool isHurtInvc = false;
     public float HurtInvcTime = 1f;
 
@@ -147,7 +148,16 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+       //플레이어 오브젝트 유지
        DontDestroyOnLoad(gameObject);
+    }
+
+    private void OnDisable()
+    {
+        //플레이어가 비활성화 될때마다 상태값 초기화
+        isRun = isJump = isHurt = isClimb = isAttack = isDownJump = isDash = false;
+        isAniRun = isAniJump = isAniHurt = isClimb = isAniNAttack = isBlueSkillAni = isRedSkillAni = isGreenSkillAni = isAniDash = false;
+        this.gameObject.layer = LayerMask.NameToLayer("Player");
     }
 
     // Update is called once per frame
@@ -156,7 +166,6 @@ public class PlayerController : MonoBehaviour
         //센서별 상태 업데이트
         OnPlatform = PlatformSensor.colSencorState();
         OnGround = GroundSensor.colSencorState();
-        
 
         //입력처리
         inputRun = Input.GetAxisRaw("Horizontal");

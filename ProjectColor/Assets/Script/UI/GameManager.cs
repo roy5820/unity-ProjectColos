@@ -49,6 +49,9 @@ public class GameManager : MonoBehaviour
     private GameObject SpawnPoint;
     GameObject FindPlayer;
 
+    //매 스테이지별 플레이어가 처치한 적 카운트
+    public int KillEnemyCnt = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -100,6 +103,8 @@ public class GameManager : MonoBehaviour
             FindPlayer.SetActive(true);
             FindPlayer.GetComponent<Transform>().position = SpawnPoint.GetComponent<Transform>().position;
         }
+
+        KillEnemyCnt = 0;//플레이어가 처치한 적 카운트 초기화
 
         // 이벤트 발생
         OnSceneChanged?.Invoke();

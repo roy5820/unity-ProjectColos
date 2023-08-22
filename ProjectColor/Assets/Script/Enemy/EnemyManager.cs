@@ -46,12 +46,13 @@ public class EnemyManager : MonoBehaviour
         HpSlider.maxValue = MaxHp;
         HpSlider.value = NowHp;
 
-        //색 반응 업ㅈ데이트
+        //색 반응 업데이트
         ReactionColorImage.GetComponent<Image>().color = NowReactionColor;
 
         //색반응 시 효과 적용
         if ((NowReactionColor == PurpleReaction || NowReactionColor == YellowReaction || NowReactionColor == SkyblueReaction) && !isColorReaction)
         {
+            isColorReaction = true; //색반응 여부 true
             StartCoroutine(ColorReactionAction(NowReactionColor));
         }
     }
@@ -78,8 +79,8 @@ public class EnemyManager : MonoBehaviour
             ColorReactionDamage = (int)Mathf.Round(playerController.AttackPower * playerController.SkyblueReactionDamage);
         this.GetComponent<EnemyController>().HurtEnemy(ColorReactionDamage, 0, null);//데미지 구현
         
-        isColorReaction = true; //색반응 여부 true
         yield return new WaitForSeconds(ReColorReactionTime);
+
         NowReactionColor = Color.black; //색 초기화
         isColorReaction = false; //색 반응 여부 false
     }
@@ -124,6 +125,18 @@ public class EnemyManager : MonoBehaviour
                 if (NowReactionColor.a == 2)
                 {
                     NowReactionColor.a -= 1;
+                }
+                if (NowReactionColor.r == 2)
+                {
+                    NowReactionColor.r -= 1;
+                }
+                if (NowReactionColor.b == 2)
+                {
+                    NowReactionColor.b -= 1;
+                }
+                if (NowReactionColor.g == 2)
+                {
+                    NowReactionColor.g -= 1;
                 }
             }
         }

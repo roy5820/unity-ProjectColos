@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4931462859095425948}
   - component: {fileID: 4931462859095425951}
   - component: {fileID: 4931462859095425950}
-  m_Layer: 15
+  m_Layer: 16
   m_Name: Trap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   KnockbackForce: 5
+  TrapDamage: 10
 --- !u!61 &4931462859095425950
 BoxCollider2D:
   m_ObjectHideFlags: 0

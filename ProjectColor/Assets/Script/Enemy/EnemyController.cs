@@ -27,6 +27,11 @@ public class EnemyController : MonoBehaviour
         EManager.GSNowHp = MaxHealth;
     }
 
+    private void OnDestroy()
+    {
+        GameManager.instance.KillEnemyCnt++;
+    }
+
     //피격함수
     public void HurtEnemy(int Damage, float KbPower, Transform ohterT)
     {

@@ -75,9 +75,12 @@
     <Compile Include="Assets\Script\Effect\DestroyParticle.cs" />
     <Compile Include="Assets\Script\AtcObj\ActMovePlatform.cs" />
     <Compile Include="Assets\Script\EfGround\JumpPad.cs" />
+    <Compile Include="Assets\Script\Test- Script\BossController.cs" />
     <Compile Include="Assets\Script\UI\GameManager.cs" />
     <Compile Include="Assets\Script\UI\FrameChecker.cs" />
     <Compile Include="Assets\Script\Skill\GreenSkill.cs" />
+    <Compile Include="Assets\Script\AtcObj\KillActSizeChangeObj.cs" />
+    <Compile Include="Assets\Script\Test- Script\Damage.cs" />
     <Compile Include="Assets\Script\Skill\BlueSkill.cs" />
     <Compile Include="Assets\Script\Skill\RedSkill.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyManager.cs" />
