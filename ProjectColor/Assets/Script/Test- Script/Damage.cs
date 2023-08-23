@@ -13,10 +13,6 @@ public class Damage : MonoBehaviour
         {
             // 플레이어 피격 함수 호출
             other.GetComponent<PlayerController>().Hurt(TrapDamage, KnockbackForce, transform);
-
-            // 해당 함정 비활성화 또는 제거
-            gameObject.SetActive(false);
-            // 또는 Destroy(gameObject);
         }
     }
 }

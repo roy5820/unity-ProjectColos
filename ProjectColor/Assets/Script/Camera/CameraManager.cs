@@ -27,7 +27,7 @@ public class CameraManager : MonoBehaviour
         if (player != null)
         {
             float x = player.transform.position.x;
-            float y = player.transform.position.y;
+            float y = player.transform.position.y + 5;
             float z = transform.position.z;
 
             if (x < leftLimit)

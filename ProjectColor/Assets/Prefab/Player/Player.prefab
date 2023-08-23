@@ -355,10 +355,10 @@ MonoBehaviour:
   InvcPlayerLayer: 13
   PlayerLayer: 14
   runSpeed: 10
-  jumpPower: 15
-  extraJumpMaxCnt: 1
+  jumpPower: 20
+  extraJumpMaxCnt: 0
   DashTime: 0.5
-  DashPower: 20
+  DashPower: 30
   coatDash: 20
   ClimbSpeed: 5
   DropTime: 0.3
@@ -368,28 +368,28 @@ MonoBehaviour:
   NomalAttackPre: {fileID: 6457845083047957237, guid: 12bc6ef193797e444aa4f2e078c6000e, type: 3}
   NAttackTime: 0.4
   NAttackDelay: 0.2
-  NAttackDashPower: 7
+  NAttackDashPower: 12
   NAttackStaminaCost: 10
   NAttackCoefficient: 1
   RedSkillPre: {fileID: 6699516953355484351, guid: 8ee2637234424d64eab655934b88b763, type: 3}
-  RedSkillStaminaCoat: 5
+  RedSkillStaminaCoat: 15
   RedSkilTime: 0.3
   RedSkillDelay: 0.2
-  RedSkillCoefficient: 0.3
+  RedSkillCoefficient: 1
   RedSkillShotingSpeed: 25
   BlueSkillPre: {fileID: 6699516953355484351, guid: 429381e1c89d4e6488deec7a8ad76f76, type: 3}
-  BlueSkillStaminaCoat: 30
+  BlueSkillStaminaCoat: 60
   BlueSkillDashPower: 0
   BlueSkillJumpPower: 25
   BlueSkilTime: 0.5
   BlueSkillDelay: 0.2
-  BlueSkillCoefficient: 1.2
+  BlueSkillCoefficient: 2
   GreenSkillPre: {fileID: 6699516953355484351, guid: 0596679cc3da02040bccac07b2fbd3f6, type: 3}
   GreenSkillStaminaCoat: 45
-  GreenSkillKnockBackPower: 5
+  GreenSkillKnockBackPower: 10
   GreenSkilTime: 0.7
   GreenSkillDelay: 0.4
-  GreenSkillCoefficient: 1.2
+  GreenSkillCoefficient: 1.5
   PurpleReactionDamage: 1.5
   YellowReactionDamage: 1.5
   SkyblueReactionDamage: 2

@@ -50,7 +50,7 @@ public class ActSizeChangeObj : MonoBehaviour
         }
     }
 
-    //외부에서 강제로 클리어 시키는 함수
+    //크기 조절 코루틴
     private IEnumerator ScaleOverTime()
     {
         float startTime = Time.time;
@@ -61,14 +61,12 @@ public class ActSizeChangeObj : MonoBehaviour
             float progress = (Time.time - startTime) / duration;
             Vector2 currentSize = Vector2.Lerp(startSize, TargetSize, progress);
             spriteRenderer.size = currentSize;
-
-            float lotationCross = (LinkObj.transform.rotation.z / 180) % 2 == 0 ? -1 : 1;
-
+            
             // 동시에 박스 콜라이더 크기와 오프셋도 조정
             if (boxCollider != null)
             {
                 boxCollider.size = currentSize;
-                boxCollider.offset = new Vector2(0f, (currentSize.y * 0.5f) * lotationCross); // 중심점 변경에 따른 offset 조정
+                boxCollider.offset = new Vector2(0f, (currentSize.y * 0.5f)); // 중심점 변경에 따른 offset 조정
             }
 
             yield return null; // 1 프레임 대기

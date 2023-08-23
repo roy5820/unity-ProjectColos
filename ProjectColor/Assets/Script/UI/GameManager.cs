@@ -193,6 +193,7 @@ public class GameManager : MonoBehaviour
     {
         
         StartCoroutine(PadeImageAndChangeScene(PadeInTime, SceneName));
+
         return true;
     }
 

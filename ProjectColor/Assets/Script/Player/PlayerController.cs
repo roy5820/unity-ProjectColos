@@ -221,7 +221,7 @@ public class PlayerController : MonoBehaviour
         {
             StartCoroutine(PlayerDownJump());
         }
-        else if (extraJumpCnt < extraJumpMaxCnt && inputJump && !isDash && !isHurt)
+        else if (inputJump && !isDash && !isHurt)
             PlayerJump();
         else if (inputClimb != 0 && collisionLadder && !isHurt)
             PlayerClimb();
@@ -411,11 +411,10 @@ public class PlayerController : MonoBehaviour
     public void PlayerJump()
     {
         isJump = true;
-        isAniJump = true;
         isClimb = false;
 
-
-        if ((OnGround || OnPlatform) || extraJumpCnt < extraJumpMaxCnt) { 
+        if ((OnGround || OnPlatform) || extraJumpCnt < extraJumpMaxCnt) {
+            isAniJump = true;
             extraJumpCnt++;
 
             RBody.velocity = new Vector2(RBody.velocity.x, 0f);

@@ -6,11 +6,20 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/BossScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/Title.unity
+    guid: 525c4b063e321874696cda6418de08c9
   - enabled: 1
     path: Assets/Scenes/MAP1.unity
     guid: 74128026cb5bb344da09f2a5a4ab2b4e
+  - enabled: 1
+    path: Assets/Scenes/MAP2.unity
+    guid: 76fc8085b90d02b42b74e3bf737d8795
+  - enabled: 1
+    path: Assets/Scenes/MAP3.unity
+    guid: 65d557e4b9178bc479dc65565ab68400
+  - enabled: 1
+    path: Assets/Scenes/BossPhase1.unity
+    guid: 424a22b3b93d1eb4a997e320c7fc1f99
   - enabled: 1
     path: Assets/Scenes/BossPhase2.unity
     guid: d1758abcb8db2694eb72996cfda3e24d

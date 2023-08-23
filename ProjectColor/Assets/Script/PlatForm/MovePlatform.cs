@@ -23,7 +23,7 @@ public class MovePlatform : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (points != null && points.Length > 0)
+        if (points != null && points[i] != null && points.Length > 0)
         {
             transform.position = points[startPoint].position;
         }
@@ -34,15 +34,18 @@ public class MovePlatform : MonoBehaviour
     {
         if (points != null && points.Length > 0 && isMove)
         {
-            if (Vector2.Distance(transform.position, points[i].position) < 0.02f)
+            if (points[i] != null)
             {
-                i++;
-                if (i >= points.Length)
+                if (Vector2.Distance(transform.position, points[i].position) < 0.02f)
                 {
-                    i = 0;
+                    i++;
+                    if (i >= points.Length)
+                    {
+                        i = 0;
+                    }
                 }
+                transform.position = Vector2.MoveTowards(transform.position, points[i].position, moveSpeed * Time.deltaTime);
             }
-            transform.position = Vector2.MoveTowards(transform.position, points[i].position, moveSpeed * Time.deltaTime);
         }
     }
 }

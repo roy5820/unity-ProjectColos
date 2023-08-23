@@ -19,6 +19,6 @@ public class CrimbObj: MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-       
+
     }
 }
