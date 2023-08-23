@@ -47,7 +47,8 @@ public class GameManager : MonoBehaviour
     //플레이어 스폰 관련
     public GameObject PlayerPre;
     private GameObject SpawnPoint;
-    GameObject FindPlayer;
+    public GameObject FindPlayer;
+    public int HealingState = 30;
 
     //매 스테이지별 플레이어가 처치한 적 카운트
     public int KillEnemyCnt = 0;
@@ -97,11 +98,13 @@ public class GameManager : MonoBehaviour
         StartCoroutine(PadeImageAndChangeScene(PadeOutTime, null));
         SpawnPoint = GameObject.Find("StartSpawnPoint");
 
-        //플레이어 스폰
+        //플레이어 스폰 + 체력 회복
         if (FindPlayer != null)
         {
             FindPlayer.SetActive(true);
             FindPlayer.GetComponent<Transform>().position = SpawnPoint.GetComponent<Transform>().position;
+
+            NowHealth += HealingState;
         }
 
         KillEnemyCnt = 0;//플레이어가 처치한 적 카운트 초기화
@@ -158,6 +161,14 @@ public class GameManager : MonoBehaviour
         //체력바 관리 PlayerMove에서 체력 관리
         HealthBar.value = NowHealth;
         HealthBar.maxValue = MaxHealth;
+
+        //체력에 따른 이벤트 처리
+        if (NowHealth <= 0)
+        {
+
+        }
+        else if (NowHealth > MaxHealth)
+            NowHealth = MaxHealth;
     }
 
     //스태미나 관리

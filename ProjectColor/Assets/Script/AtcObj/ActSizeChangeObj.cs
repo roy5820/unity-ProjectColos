@@ -72,13 +72,6 @@ public class ActSizeChangeObj : MonoBehaviour
             yield return null; // 1 프레임 대기
         }
 
-        spriteRenderer.size = TargetSize; // 정확한 크기로 조정
-
-        // 마찬가지로 박스 콜라이더 크기와 오프셋도 조정
-        if (boxCollider != null)
-        {
-            boxCollider.size = TargetSize;
-            boxCollider.offset = new Vector2(0f, -TargetSize.y * 0.5f); // 중심점 변경에 따른 offset 조정
-        }
+        
     }
 }

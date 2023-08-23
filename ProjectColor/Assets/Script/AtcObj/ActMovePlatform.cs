@@ -40,10 +40,10 @@ public class ActMovePlatform : MonoBehaviour
     //공격 충돌 시 외부에서 호출되는 색칠하는 함수
     public void ActAction(Color nowColor)
     {
+        Debug.Log(nowColor == ClearColor);
         if (objColor == ClearColor && !isReColoring)
         {
             return;
-
         }
         else
         {

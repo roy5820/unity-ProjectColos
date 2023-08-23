@@ -516,7 +516,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2643f77a5df28b145b0358bff3e1d50c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 100
+  MaxHealth: 75
   EnemyDamage: 6
   EnemyAttackDamage: 10
   EnemyKnockBackPower: 5
@@ -532,8 +532,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b24bfb376e3a46f4ca0c628f51e9424b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRange: 5
-  movementSpeed: 2
+  detectionRange: 8
+  movementSpeed: 7
   MoveArrow: 1
   GroundSensor: {fileID: 8675180309140097791}
   PlatformSensor: {fileID: 8675180308546416367}

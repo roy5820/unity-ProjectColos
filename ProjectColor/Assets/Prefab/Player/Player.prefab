@@ -354,7 +354,7 @@ MonoBehaviour:
   DropPlayerLayer: 12
   InvcPlayerLayer: 13
   PlayerLayer: 14
-  runSpeed: 10
+  runSpeed: 8
   jumpPower: 20
   extraJumpMaxCnt: 0
   DashTime: 0.5
@@ -369,7 +369,7 @@ MonoBehaviour:
   NAttackTime: 0.4
   NAttackDelay: 0.2
   NAttackDashPower: 12
-  NAttackStaminaCost: 10
+  NAttackStaminaCost: 0
   NAttackCoefficient: 1
   RedSkillPre: {fileID: 6699516953355484351, guid: 8ee2637234424d64eab655934b88b763, type: 3}
   RedSkillStaminaCoat: 15

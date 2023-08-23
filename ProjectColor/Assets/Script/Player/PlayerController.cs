@@ -149,7 +149,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
        //플레이어 오브젝트 유지
-       DontDestroyOnLoad(gameObject);
+       DontDestroyOnLoad(this.gameObject);
     }
 
     private void OnDisable()
@@ -245,10 +245,15 @@ public class PlayerController : MonoBehaviour
         //Platform 이동관련 상태관리
         if (!isClimb && OnPlatform)
         {
-            if (OtherPlatform != null) transform.SetParent(OtherPlatform.transform);
-        }  
-         else
+            if (OtherPlatform != null)
+                transform.SetParent(OtherPlatform.transform);
+        }
+        else
+        {
             transform.SetParent(null);
+            DontDestroyOnLoad(this.gameObject);
+        }
+            
 
         //경사면 미끄럼 방지 코드
         if((OnGround || OnPlatform) && !isClimb && !isDash  && !isAniRun && !isJump && !isHurt && !isAttack)
