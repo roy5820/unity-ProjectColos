@@ -1,54 +1,87 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BossController : MonoBehaviour
 {
-    public GameObject rainPrefab;   // ºñ ÇÁ¸®ÆÕ
-    public GameObject trapObj;   // ÇÔÁ¤ ¿ÀºêÁ§Æ®
-    public GameObject trapBewareObj;   // ÇÔÁ¤ ÁÖÀÇ ¿ÀºêÁ§Æ®
+    public GameObject rainPrefab;   // ë¹„ í”„ë¦¬íŒ¹
+    public GameObject trapObj;   // í•¨ì • ì˜¤ë¸Œì íŠ¸
+    public GameObject trapBewareObj;   // í•¨ì • ì£¼ì˜ ì˜¤ë¸Œì íŠ¸
 
-    public Transform[] rainSpawnPoints; // ºñ »ı¼º À§Ä¡ ¹è¿­
+    public Transform[] rainSpawnPoints; // ë¹„ ìƒì„± ìœ„ì¹˜ ë°°ì—´
 
-    public float trapSpawnInterval = 10.0f; // ÃÊ±â ÇÔÁ¤ »ı¼º ½Ã°£
-    public float rainSpawnInterval = 0.6f; // ºñ »ı¼º °£°İ
-    public float rainSpawnTime = 2f; // ºñ »ı¼º ½Ã°£
+    public float trapSpawnInterval = 0.3f; // í•¨ì • ìƒì„± ì‹œê°„
+    public float trapBewareSpawnTime = 1f; // í•¨ì • ê²½ê³  ìƒì„± ì‹œê°„
+    public float rainSpawnInterval = 0.6f; // ë¹„ ìƒì„± ê°„ê²©
+    public float rainSpawnTime = 2f; // ë¹„ ìƒì„± ì‹œê°„
 
-    public float BossRandomAttackTimeS = 5f; // º¸½º ½ºÅ³ ÁÖ±â ÃÖ¼Ú °ª
-    public float BossRandomAttackTimeE = 10f;// º¸½º ½ºÅ³ ÁÖ±â ÃÖ´ñ °ª
+    public float BossRandomAttackTimeS = 5f; // ë³´ìŠ¤ ìŠ¤í‚¬ ì£¼ê¸° ìµœì†Ÿ ê°’
+    public float BossRandomAttackTimeE = 10f;// ë³´ìŠ¤ ìŠ¤í‚¬ ì£¼ê¸° ìµœëŒ“ ê°’
 
-    private float trapTimer; // ÇÔÁ¤ »ı¼º Å¸ÀÌ¸Ó
-    private float rainTimer; // ºñ »ı¼º ÁÖ±â Å¸ÀÌ¸Ó
-    private float rainIntervalTimer; // ºñ »ı¼º Å¸ÀÌ¸Ó
+    private float trapTimer; // í•¨ì • ìƒì„± íƒ€ì´ë¨¸
+    private float rainTimer; // ë¹„ ìƒì„± ì£¼ê¸° íƒ€ì´ë¨¸
+    private float rainIntervalTimer; // ë¹„ ìƒì„± íƒ€ì´ë¨¸
 
-    
+    //Boss UIìƒì„± ê´€ë ¨ ë³€ìˆ˜
+    public GameObject EnemyCanvus;
+
+    //Enemy UI ì„¤ì • ê´€ë ¨
+    private Slider HpSlider;
+    public int MaxHp = 100;
+    int NowHp;
+
+    public string ChangScenName; // ë³´ìŠ¤ ì²˜ì¹˜ ì‹œ ì´ë™í•  ìŠ¤í…Œì´ì§€
+
+    //ìƒ‰ë°˜ì‘ ê´€ë ¨ ì„¤ì •
+    Image ReactionColorImage;
+    public float ReColorReactionTime = 3.0f;
+    bool isColorReaction = false; //ìƒ‰ë°˜ì‘ ì—¬ë¶€
+    Color NowReactionColor = Color.black;
+    Color PurpleReaction = new Color(1, 0, 1, 1);
+    Color YellowReaction = new Color(1, 1, 0, 1);
+    Color SkyblueReaction = new Color(0, 1, 1, 1);
 
     private void Start()
     {
-        trapTimer = trapSpawnInterval;
+        //ë°”ë‹¥ íŠ¸ë©ìƒì„± íŒ¨í„´ ê´€ë ¨ ë³€ìˆ˜ ì´ˆê¸°í™”
+        trapTimer = Random.Range(BossRandomAttackTimeS + rainSpawnTime, BossRandomAttackTimeE + rainSpawnTime);
+        //ëª¬ìŠ¤í„° ë¹„ íŒ¨í„´ ê´€ë ¨ ë³€ìˆ˜ ì´ˆê¸°í™”
+        rainTimer = Random.Range(BossRandomAttackTimeS + rainSpawnTime, BossRandomAttackTimeE + rainSpawnTime);
         rainIntervalTimer = rainSpawnInterval;
-        rainTimer = rainSpawnTime;
+        //UIê´€ë ¨ ì„¤ì • ê°’ ì´ˆê¸°í™”
+        HpSlider = EnemyCanvus.transform.GetChild(0).Find("HpBar").GetComponent<Slider>();
+        ReactionColorImage = EnemyCanvus.transform.GetChild(0).Find("ReactionColor").GetComponent<Image>();
+        NowHp = MaxHp;
     }
 
     private void Update()
     {
-        // ÇÔÁ¤ »ı¼º Å¸ÀÌ¸Ó °¨¼Ò
+        // í•¨ì • ìƒì„± íƒ€ì´ë¨¸ ê°ì†Œ
         trapTimer -= Time.deltaTime;
-        // ºñ »ı¼º Å¸ÀÌ¸Ó °¨¼Ò
+        // ë¹„ ìƒì„± íƒ€ì´ë¨¸ ê°ì†Œ
         rainIntervalTimer -= Time.deltaTime;
         rainTimer -= Time.deltaTime;
 
-        // ÀÏÁ¤ °£°İ¸¶´Ù ÇÔÁ¤ »ı¼º
-        if (trapTimer <= 0)
+        //ì¼ì •  ê°„ê²©ë§ˆë‹¤ í•¨ì • ê²½ê³  ìƒì„±
+        if(trapTimer <= trapBewareSpawnTime)
         {
-            SpawnTrap();
-            trapTimer = Random.Range(BossRandomAttackTimeS + rainSpawnTime, BossRandomAttackTimeE + rainSpawnTime);
+            trapBewareObj.SetActive(true);
+            // ì¼ì • ê°„ê²©ë§ˆë‹¤ í•¨ì • ìƒì„±
+            if (trapTimer <= 0)
+            {
+                trapBewareObj.SetActive(false);
+                SpawnTrap();
+                Invoke("SpawnTrap", trapSpawnInterval);
+                trapTimer = Random.Range(BossRandomAttackTimeS + rainSpawnTime, BossRandomAttackTimeE + rainSpawnTime);
+            }
         }
+        
 
-        //ºñ»ı¼º
+        //ë¹„ìƒì„±
         if (rainTimer <= rainSpawnTime)
         {
-            // ÀÏÁ¤ °£°İ¸¶´Ù ºñ »ı¼º
+            // ì¼ì • ê°„ê²©ë§ˆë‹¤ ë¹„ ìƒì„±
             if (rainIntervalTimer <= 0)
             {
 
@@ -58,21 +91,97 @@ public class BossController : MonoBehaviour
             if(rainTimer <= 0)
                 rainTimer = Random.Range(BossRandomAttackTimeS + rainSpawnTime, BossRandomAttackTimeE + rainSpawnTime);
         }
+
+        EnemyCanvus.transform.localPosition = this.transform.position;
+        //ì  ì²´ë ¥ ì—…ë°ì´íŠ¸
+        HpSlider.maxValue = MaxHp;
+        HpSlider.value = NowHp;
+
+        //ìƒ‰ ë°˜ì‘ ì—…ë°ì´íŠ¸
+        ReactionColorImage.GetComponent<Image>().color = NowReactionColor;
+
+        //ìƒ‰ë°˜ì‘ ì‹œ íš¨ê³¼ ì ìš©
+        if ((NowReactionColor == PurpleReaction || NowReactionColor == YellowReaction || NowReactionColor == SkyblueReaction) && !isColorReaction)
+        {
+            isColorReaction = true; //ìƒ‰ë°˜ì‘ ì—¬ë¶€ true
+            StartCoroutine(ColorReactionAction(NowReactionColor));
+        }
+
+        if (NowHp <= 0)
+        {
+            GameManager.instance.ChangScen(ChangScenName);
+            if(GameObject.FindWithTag("Player") != null)
+                GameObject.FindWithTag("Player").SetActive(false);
+        }
     }
 
-    // ÇÔÁ¤ »ı¼º ¸Ş¼­µå
+    //ìƒ‰ë°˜ì‘ ì•¡ì…˜ êµ¬í˜„
+    IEnumerator ColorReactionAction(Color ReactionColor)
+    {
+        //í”Œë ˆì´ì–´ ì»¨íŠ¸ë¡¤ëŸ¬ ì—°ê²°
+        PlayerController playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+        
+        //ìƒ‰ ë°˜ì‘ ë°ë¯¸ì§€ ê³„ì‚°
+        int ColorReactionDamage = 0;
+        if (ReactionColor == PurpleReaction)
+            ColorReactionDamage = (int)Mathf.Round(playerController.AttackPower * playerController.PurpleReactionDamage);
+        else if (ReactionColor == YellowReaction)
+            ColorReactionDamage = (int)Mathf.Round(playerController.AttackPower * playerController.YellowReactionDamage);
+        else if (ReactionColor == SkyblueReaction)
+            ColorReactionDamage = (int)Mathf.Round(playerController.AttackPower * playerController.SkyblueReactionDamage);
+        
+        HurtBoss(ColorReactionDamage, Color.black);//ë°ë¯¸ì§€ êµ¬í˜„
+        
+
+        yield return new WaitForSeconds(ReColorReactionTime);
+
+        NowReactionColor = Color.black; //ìƒ‰ ì´ˆê¸°í™”
+        isColorReaction = false; //ìƒ‰ ë°˜ì‘ ì—¬ë¶€ false
+    }
+
+    // í•¨ì • ìƒì„± ë©”ì„œë“œ
     void SpawnTrap()
     {
-        
+        if(trapObj.activeSelf == false)
+            trapObj.SetActive(true);
+        else if (trapObj.activeSelf == true)
+            trapObj.SetActive(false);
+
     }
 
-    // ºñ »ı¼º ¸Ş¼­µå
+    // ë¹„ ìƒì„± ë©”ì„œë“œ
     void SpawnRain()
     {
-        // ·£´ıÇÑ À§Ä¡¿¡¼­ ºñ »ı¼º
+        // ëœë¤í•œ ìœ„ì¹˜ì—ì„œ ë¹„ ìƒì„±
         int randomIndex = Random.Range(0, rainSpawnPoints.Length);
         GameObject rain = Instantiate(rainPrefab);
         rain.transform.position = rainSpawnPoints[randomIndex].position;
-        //Debug.Log("³¯¸°´Ù");
+    }
+
+    //í”¼ê²©í•¨ìˆ˜
+    public void HurtBoss(int Damage, Color isColor)
+    {
+        NowHp = NowHp - Damage;//í”¼ê²© ë°ë¯¸ì§€ ë°˜ì˜
+
+        if(isColor != Color.black && !isColorReaction)
+        {
+            NowReactionColor += isColor;
+            if (NowReactionColor.a == 2)
+            {
+                NowReactionColor.a -= 1;
+            }
+            if (NowReactionColor.r == 2)
+            {
+                NowReactionColor.r -= 1;
+            }
+            if (NowReactionColor.b == 2)
+            {
+                NowReactionColor.b -= 1;
+            }
+            if (NowReactionColor.g == 2)
+            {
+                NowReactionColor.g -= 1;
+            }
+        }
     }
 }

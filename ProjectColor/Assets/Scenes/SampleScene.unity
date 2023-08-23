@@ -1404,7 +1404,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3332419622043375386, guid: be92c66fedd8a4243894cf64723bfbcc, type: 3}
       propertyPath: duration
-      value: 10
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6648893716345724696, guid: be92c66fedd8a4243894cf64723bfbcc, type: 3}
       propertyPath: m_RootOrder

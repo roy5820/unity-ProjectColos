@@ -354,7 +354,7 @@ MonoBehaviour:
   DropPlayerLayer: 12
   InvcPlayerLayer: 13
   PlayerLayer: 14
-  runSpeed: 5
+  runSpeed: 10
   jumpPower: 15
   extraJumpMaxCnt: 1
   DashTime: 0.5

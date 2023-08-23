@@ -43,10 +43,18 @@ public class RedSkill : MonoBehaviour
         }
         else if (EnemyLayer == other.gameObject.layer)
         {
-            EnemyController Enemy = other.GetComponent<EnemyController>(); // 적 컨트롤러
-            Enemy.HurtEnemy(SkillDamage, 0, null); //적피격 함수 호출
+            if (other.tag == "Boss")
+            {
+                BossController Boss = other.GetComponent<BossController>();
+                Boss.HurtBoss(SkillDamage, NColor);
+            }
+            else
+            {
+                EnemyController Enemy = other.GetComponent<EnemyController>(); // 적 컨트롤러
+                Enemy.HurtEnemy(SkillDamage, 0, null); //적피격 함수 호출
 
-            other.GetComponent<EnemyManager>().GSNowReactionColor = NColor; //적 색반응 적용
+                other.GetComponent<EnemyManager>().GSNowReactionColor = NColor; //적 색반응 적용
+            }
         }
     }
 

@@ -10,7 +10,7 @@ public class KillActSizeChangeObj : MonoBehaviour
 
     public int TargetKill; // 목표 타겟 킬수
     bool isClear = false; // 클리어 여부
-
+    
     private SpriteRenderer spriteRenderer; // 스프라이트 렌더러 컴포넌트
     private BoxCollider2D boxCollider; // 박스 콜라이더 컴포넌트
 
