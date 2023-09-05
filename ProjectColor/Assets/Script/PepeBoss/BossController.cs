@@ -42,6 +42,11 @@ public class BossController : MonoBehaviour
     Color YellowReaction = new Color(1, 1, 0, 1);
     Color SkyblueReaction = new Color(0, 1, 1, 1);
 
+    //보스 애니메이션
+    Animator BossAni;
+    bool isAttack = false;
+
+
     private void Start()
     {
         //바닥 트랩생성 패턴 관련 변수 초기화
@@ -53,6 +58,8 @@ public class BossController : MonoBehaviour
         HpSlider = EnemyCanvus.transform.GetChild(0).Find("HpBar").GetComponent<Slider>();
         ReactionColorImage = EnemyCanvus.transform.GetChild(0).Find("ReactionColor").GetComponent<Image>();
         NowHp = MaxHp;
+        //보스 애니메이터 연결
+        BossAni = this.GetComponent<Animator>();
     }
 
     private void Update()
@@ -62,14 +69,17 @@ public class BossController : MonoBehaviour
         // 비 생성 타이머 감소
         rainIntervalTimer -= Time.deltaTime;
         rainTimer -= Time.deltaTime;
+            
 
         //일정  간격마다 함정 경고 생성
         if(trapTimer <= trapBewareSpawnTime)
         {
+            isAttack = true;
             trapBewareObj.SetActive(true);
             // 일정 간격마다 함정 생성
             if (trapTimer <= 0)
             {
+                isAttack = false;
                 trapBewareObj.SetActive(false);
                 SpawnTrap();
                 Invoke("SpawnTrap", trapSpawnInterval);
@@ -113,6 +123,16 @@ public class BossController : MonoBehaviour
                 GameObject.FindWithTag("Player").SetActive(false);
             GameManager.instance.ChangScen(ChangScenName);
             Destroy(this.gameObject);
+        }
+
+        //애니메이션 일괄 처리
+        if(isAttack == true)
+        {
+            BossAni.SetBool("isAttack", true);
+        }
+        else
+        {
+            BossAni.SetBool("isAttack", false);
         }
     }
 

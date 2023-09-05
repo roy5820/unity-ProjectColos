@@ -27,9 +27,6 @@ public class EnemyMoveController : MonoBehaviour
     public GameObject WallSensor;
     bool OnFrontWall = false;
 
-    //이동 여부
-    bool isMove = false;
-
     //플레이어 탐색 여부
     bool ScanPlayer = true;
     float StapScanTime = 1.0f;
@@ -89,14 +86,14 @@ public class EnemyMoveController : MonoBehaviour
 
         //적 오브젝트 이동 여부 설정
         if (EManager.isKnockBack)
-            isMove = false;
+            EManager.isMove = false;
         else if (EManager.isAttack)//공격 시 정지
         {
             rb.velocity = new Vector2(0, rb.velocity.y);
-            isMove = false;
+            EManager.isMove = false;
         }
         else if (OnFrontGround)
-            isMove = true;
+            EManager.isMove = true;
 
         //MoveArrow에 따라 로컬스케일 반전
         if (MoveArrow > 0)
@@ -113,7 +110,7 @@ public class EnemyMoveController : MonoBehaviour
     private void FixedUpdate()
     {
         //Enemy 이동 구현
-        if (isMove)
+        if (EManager.isMove)
         {
             rb.velocity = new Vector2(movementSpeed * MoveArrow, rb.velocity.y);
         }

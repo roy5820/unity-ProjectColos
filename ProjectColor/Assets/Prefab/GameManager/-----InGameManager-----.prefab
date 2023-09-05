@@ -277,8 +277,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4189722643599702856}
         m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
-        m_MethodName: SceneChange
-        m_Mode: 5
+        m_MethodName: RestartScene
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -915,16 +915,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 4189722643599702856}
+        m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
+        m_MethodName: OutGame
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Title
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &1498863717
@@ -2235,7 +2235,10 @@ MonoBehaviour:
   PadeOutTime: 0.5
   itemPanel: {fileID: 2021482643}
   PlayerPre: {fileID: 2311855110513187797, guid: 6050479a3d0c9ed4bbe6f364de0b4f08, type: 3}
+  FindPlayer: {fileID: 0}
+  HealingState: 30
   KillEnemyCnt: 0
+  DiePanel: {fileID: 1082318184}
 --- !u!114 &3165128717549542838
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -15,6 +15,11 @@ public class EnemyController : MonoBehaviour
     public int EnemyAttackDamage = 10;
     public float EnemyKnockBackPower = 5;
 
+    //현제 애니메이션
+    string NowAni = "";
+    Animator EnemyAni;
+    public GameObject EnemySprite;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +30,28 @@ public class EnemyController : MonoBehaviour
         //초기 Enemy체력 값 설정
         EManager.GSMaxHp = MaxHealth;
         EManager.GSNowHp = MaxHealth;
+        //애니메이털 연결
+        EnemyAni = EnemySprite.GetComponent<Animator>();
+    }
+
+    private void Update()
+    {
+        //상태별 애니메이션 관리
+        if (EManager.isAttack)
+            NowAni = "isAttack";
+        if (EManager.isMove)
+            NowAni = "isWalk";
+
+        if (NowAni == "isAttack")
+            EnemyAni.SetBool("isAttack", true);
+        else
+            EnemyAni.SetBool("isAttack", false);
+
+        if (NowAni == "isWalk")
+            EnemyAni.SetBool("isWalk", true);
+        else
+            EnemyAni.SetBool("isWalk", false);
+
     }
 
     private void OnDestroy()

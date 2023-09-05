@@ -53,6 +53,9 @@ public class GameManager : MonoBehaviour
     //매 스테이지별 플레이어가 처치한 적 카운트
     public int KillEnemyCnt = 0;
 
+    // 게임 오버시 UI 컨트롤
+    public GameObject DiePanel;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -108,6 +111,8 @@ public class GameManager : MonoBehaviour
         }
 
         KillEnemyCnt = 0;//플레이어가 처치한 적 카운트 초기화
+
+        this.GetComponent<ItemManager>().ItemSeting();
 
         // 이벤트 발생
         OnSceneChanged?.Invoke();
@@ -165,7 +170,8 @@ public class GameManager : MonoBehaviour
         //체력에 따른 이벤트 처리
         if (NowHealth <= 0)
         {
-
+            FindPlayer.SetActive(false);
+            DiePanel.SetActive(true);
         }
         else if (NowHealth > MaxHealth)
             NowHealth = MaxHealth;
@@ -252,7 +258,7 @@ public class GameManager : MonoBehaviour
         foreach(GameObject item in items)
         {
             Item randomItem = itemManager.GetRandomItem();//아이템 데이터 베이스에서 아이템 정보 추출
-
+            
             if (randomItem == null)//데이터 베이스에 아이템이 없으면 break
                 break;
             
@@ -267,7 +273,7 @@ public class GameManager : MonoBehaviour
         {
             yield return null;
         }
-
+        isSelectItem = false;
         StartCoroutine(PadeImageAndChangeScene(PadeInTime, SceneName));
     }
 

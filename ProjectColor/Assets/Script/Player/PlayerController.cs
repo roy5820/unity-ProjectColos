@@ -197,7 +197,7 @@ public class PlayerController : MonoBehaviour
                 GameManager.instance.NowStamina -= BlueSkillStaminaCoat;
                 ColorSkill(BlueSkillPre, isColor, BlueSkilTime, BlueSkillDelay);
             }
-            else if(isColor == Color.green && (OnGround || OnPlatform) && isStamina >= GreenSkillStaminaCoat)
+            else if(isColor == Color.green && isStamina >= GreenSkillStaminaCoat)
             {
                 //스테미나 소모
                 GameManager.instance.NowStamina -= GreenSkillStaminaCoat;
@@ -266,9 +266,13 @@ public class PlayerController : MonoBehaviour
         }
 
         //애니메이션 일괄 처리
-        if (isAniDash)
+        if(isClimb)
         {
-            nowAni = "Rolling";
+            nowAni = "Climb";
+        }
+        else if (isAniDash)
+        {
+            nowAni = "Dash";
         }
         else if (isRedSkillAni)
         {
@@ -304,13 +308,21 @@ public class PlayerController : MonoBehaviour
         }
 
         //구르기 애니 처리
-        if (nowAni == "Rolling")
+        if(nowAni == "Climb")
         {
-            PlayerAnimation.SetBool("goRolling", true);
+            PlayerAnimation.SetBool("goClimb", true);
         }
         else
         {
-            PlayerAnimation.SetBool("goRolling", false);
+            PlayerAnimation.SetBool("goClimb", false);
+        }
+        if (nowAni == "Dash")
+        {
+            PlayerAnimation.SetBool("goDash", true);
+        }
+        else
+        {
+            PlayerAnimation.SetBool("goDash", false);
         }
         //빨간색 스킬 애니 처리
         if (nowAni == "RedSkill")
@@ -558,7 +570,7 @@ public class PlayerController : MonoBehaviour
         {
             isTime += Time.deltaTime;
             //피격시 공격 캔슬
-            if (isHurt && !isSuperArmor)
+            if (isHurt && SkillColor != Color.green)
             {
                 isTime = NAttackTime;
                 break;
