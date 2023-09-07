@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
@@ -81,6 +82,9 @@ public class PlayerController : MonoBehaviour
     bool isAttack = false; //공격 상태
     bool isSuperArmor = false; // 공격시 슈퍼아머 상태인지
 
+    //죽음 관련
+    bool isDie = false;
+
     //nomalAttack 관련 변수 선언
     public GameObject NomalAttackPre;
     bool inputNAttack = false;
@@ -157,6 +161,8 @@ public class PlayerController : MonoBehaviour
         //플레이어가 비활성화 될때마다 상태값 초기화
         isRun = isJump = isHurt = isClimb = isAttack = isDownJump = isDash = false;
         isAniRun = isAniJump = isAniHurt = isClimb = isAniNAttack = isBlueSkillAni = isRedSkillAni = isGreenSkillAni = isAniDash = false;
+        PlayerSfrite.transform.GetComponent<SpriteRenderer>().color = fullColor;
+
         this.gameObject.layer = LayerMask.NameToLayer("Player");
     }
 
@@ -176,57 +182,57 @@ public class PlayerController : MonoBehaviour
         inputClimb = Input.GetAxisRaw("Vertical");
 
         //플레이어 행동 일괄 처리
-        // 달리기
-        if (!isDash && inputRun != 0 && !isAttack && !isClimb && !isHurt) // 달리기 불가 상태 체크
-            isRun = true;
-
-
-        if (inputDash && !isDash && (OnGround || OnPlatform) && GameManager.instance.NowStamina >= coatDash && !isAttack)
+        if (!isDie)
         {
-            PlayerDash();
-        }
-        else if(inputSkill && !isAttack && !isDash && !isHurt)
-        {
-            
-            Color isColor = GameManager.instance.NColor;
-            int isStamina = GameManager.instance.NowStamina;
+            // 달리기
+            if (!isDash && inputRun != 0 && !isAttack && !isClimb && !isHurt) // 달리기 불가 상태 체크
+                isRun = true;
 
-            if (isColor == Color.blue && isStamina >= BlueSkillStaminaCoat)
+
+            if (inputDash && !isDash && (OnGround || OnPlatform) && GameManager.instance.NowStamina >= coatDash && !isAttack)
             {
-                //스테미나 소모
-                GameManager.instance.NowStamina -= BlueSkillStaminaCoat;
-                ColorSkill(BlueSkillPre, isColor, BlueSkilTime, BlueSkillDelay);
+                PlayerDash();
             }
-            else if(isColor == Color.green && isStamina >= GreenSkillStaminaCoat)
+            else if (inputSkill && !isAttack && !isDash && !isHurt)
             {
-                //스테미나 소모
-                GameManager.instance.NowStamina -= GreenSkillStaminaCoat;
-                ColorSkill(GreenSkillPre, isColor, GreenSkilTime, GreenSkillDelay);
-                SFXManager.Instance.PlaySound(SFXManager.Instance.playerGreenSkill); // 사운드 재생
+                Color isColor = GameManager.instance.NColor;
+                int isStamina = GameManager.instance.NowStamina;
+
+                if (isColor == Color.blue && isStamina >= BlueSkillStaminaCoat)
+                {
+                    //스테미나 소모
+                    GameManager.instance.NowStamina -= BlueSkillStaminaCoat;
+                    ColorSkill(BlueSkillPre, isColor, BlueSkilTime, BlueSkillDelay);
+                }
+                else if (isColor == Color.green && isStamina >= GreenSkillStaminaCoat)
+                {
+                    //스테미나 소모
+                    GameManager.instance.NowStamina -= GreenSkillStaminaCoat;
+                    ColorSkill(GreenSkillPre, isColor, GreenSkilTime, GreenSkillDelay);
+                    SFXManager.Instance.PlaySound(SFXManager.Instance.playerGreenSkill); // 사운드 재생
+                }
+                else if (isColor == Color.red && isStamina >= RedSkillStaminaCoat)
+                {
+                    //스테미나 소모
+                    GameManager.instance.NowStamina -= RedSkillStaminaCoat;
+                    ColorSkill(RedSkillPre, isColor, RedSkilTime, RedSkillDelay);
+                }
+
             }
-            else if(isColor == Color.red && isStamina >= RedSkillStaminaCoat)
+            else if (inputNAttack && !isAttack && !isDash && !isHurt && GameManager.instance.NowStamina >= NAttackStaminaCost && !isHurt)
             {
-                //스테미나 소모
-                GameManager.instance.NowStamina -= RedSkillStaminaCoat;
-                ColorSkill(RedSkillPre, isColor, RedSkilTime, RedSkillDelay);
+                PlayerNomalAttack();
+                SFXManager.Instance.PlaySound(SFXManager.Instance.playerNomalAttack);//사운드 재생
             }
-            
+            else if (inputJump && inputClimb < 0 && !isHurt && OnPlatform)
+            {
+                StartCoroutine(PlayerDownJump());
+            }
+            else if (inputJump && !isDash && !isHurt)
+                PlayerJump();
+            else if (inputClimb != 0 && collisionLadder && !isHurt)
+                PlayerClimb();
         }
-        else if (inputNAttack && !isAttack && !isDash && !isHurt && GameManager.instance.NowStamina >= NAttackStaminaCost && !isHurt)
-        {
-            PlayerNomalAttack();
-            SFXManager.Instance.PlaySound(SFXManager.Instance.playerNomalAttack);//사운드 재생
-        }
-        else if (inputJump && inputClimb < 0 && !isHurt && OnPlatform)
-        {
-            StartCoroutine(PlayerDownJump());
-        }
-        else if (inputJump && !isDash && !isHurt)
-            PlayerJump();
-        else if (inputClimb != 0 && collisionLadder && !isHurt)
-            PlayerClimb();
-
-
 
         //상태 관리
 
@@ -268,7 +274,9 @@ public class PlayerController : MonoBehaviour
         //애니메이션 일괄 처리
         if(isClimb)
         {
-            nowAni = "Climb";
+            nowAni = "StopClimb";
+            if (inputClimb != 0)
+                nowAni = "Climb";
         }
         else if (isAniDash)
         {
@@ -307,15 +315,26 @@ public class PlayerController : MonoBehaviour
             nowAni = "None";
         }
 
-        //구르기 애니 처리
+        //줄오르기 애니 처리
         if(nowAni == "Climb")
         {
+            PlayerAnimation.SetBool("goStopClimb", true);
             PlayerAnimation.SetBool("goClimb", true);
         }
         else
         {
             PlayerAnimation.SetBool("goClimb", false);
         }
+        //줄에서 멈춰있기 애니 처리
+        if (nowAni == "StopClimb")
+        {
+            PlayerAnimation.SetBool("goStopClimb", true);
+        }
+        else if(nowAni != "Climb")
+        {
+            PlayerAnimation.SetBool("goStopClimb", false);
+        }
+        //대쉬 애니 처리
         if (nowAni == "Dash")
         {
             PlayerAnimation.SetBool("goDash", true);
@@ -706,9 +725,9 @@ public class PlayerController : MonoBehaviour
 
         int hp = GameManager.instance.PlayerHp;
 
-        if (hp < 0)
+        if(hp <= 0)
         {
-
+            StartCoroutine(DieAction());
         }
         else
         {
@@ -766,6 +785,15 @@ public class PlayerController : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
             PlayerSfrite.transform.GetComponent<SpriteRenderer>().color = fullColor;
         }
+    }
+
+    IEnumerator DieAction()
+    {
+        isDie = true;
+        yield return new WaitForSeconds(HurtInvcTime);
+
+        GameManager.instance.FindPlayer.SetActive(false);
+        GameManager.instance.DiePanel.SetActive(true);
     }
     
     private void OnTriggerStay2D(Collider2D other)

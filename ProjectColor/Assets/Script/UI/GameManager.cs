@@ -167,13 +167,7 @@ public class GameManager : MonoBehaviour
         HealthBar.value = NowHealth;
         HealthBar.maxValue = MaxHealth;
 
-        //체력에 따른 이벤트 처리
-        if (NowHealth <= 0)
-        {
-            FindPlayer.SetActive(false);
-            DiePanel.SetActive(true);
-        }
-        else if (NowHealth > MaxHealth)
+        if (NowHealth > MaxHealth)
             NowHealth = MaxHealth;
     }
 

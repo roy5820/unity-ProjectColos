@@ -525,7 +525,7 @@ MonoBehaviour:
   EnemyDamage: 5
   EnemyAttackDamage: 5
   EnemyKnockBackPower: 5
-  EnemySprite: {fileID: 0}
+  EnemySprite: {fileID: 5707666103984012786}
 --- !u!114 &979695124605778652
 MonoBehaviour:
   m_ObjectHideFlags: 0
