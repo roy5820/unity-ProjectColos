@@ -51,7 +51,7 @@ public class ItemManager : MonoBehaviour
     //파랑파랑 스킬 구현
     public void UpgradeBlueSkill()
     {
-        playerController.BlueSkillCoefficient += 0.3f; // 데미지 계수 증가
+        playerController.BlueSkillCoefficient += 0.5f; // 데미지 계수 증가
         playerController.BlueSkillJumpPower += 3f; //점프력 증가
     }
 
@@ -66,6 +66,6 @@ public class ItemManager : MonoBehaviour
     public void UpgradeGreenSkill()
     {
         playerController.GreenSkillCoefficient += 0.3f;
-        playerController.GreenSkillKnockBackPower += 10f;
+        playerController.GreenSkillKnockBackPower += 3.5f;
     }
 }

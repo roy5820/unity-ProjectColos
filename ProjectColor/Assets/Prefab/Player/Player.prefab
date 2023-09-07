@@ -368,7 +368,7 @@ MonoBehaviour:
   NomalAttackPre: {fileID: 6457845083047957237, guid: 12bc6ef193797e444aa4f2e078c6000e, type: 3}
   NAttackTime: 0.4
   NAttackDelay: 0.2
-  NAttackDashPower: 12
+  NAttackDashPower: 5
   NAttackStaminaCost: 0
   NAttackCoefficient: 1
   RedSkillPre: {fileID: 6699516953355484351, guid: 8ee2637234424d64eab655934b88b763, type: 3}

@@ -168,7 +168,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5291506469398208263}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.937, z: 0}
+  m_LocalPosition: {x: 0.054, y: -0.937, z: 0}
   m_LocalScale: {x: -3.5, y: 3.5, z: 1}
   m_Children: []
   m_Father: {fileID: 5291506469412620209}
@@ -235,7 +235,7 @@ Animator:
   m_GameObject: {fileID: 5291506469398208263}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2d42a2dc5617e394bbcc98b9c78da25d, type: 2}
+  m_Controller: {fileID: 9100000, guid: a0527ba8a7b8f074a9be53be01a61eef, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -275,7 +275,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5291506469412620208}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.05, y: -1.64, z: -1.4703255}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -359,7 +359,7 @@ MonoBehaviour:
   EnemyDamage: 6
   EnemyAttackDamage: 10
   EnemyKnockBackPower: 5
-  EnemySprite: {fileID: 0}
+  EnemySprite: {fileID: 5291506469398208263}
 --- !u!114 &847260070690904105
 MonoBehaviour:
   m_ObjectHideFlags: 0
