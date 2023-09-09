@@ -6,9 +6,14 @@ public class SFXManager : MonoBehaviour
 {
     public static SFXManager Instance { get; private set; }
 
-    public AudioClip playerNomalAttack;
+    public AudioClip playerDash;
     public AudioClip playerColorChange;
+
+    public AudioClip playerNomalAttack;
     public AudioClip playerGreenSkill;
+    public AudioClip playerRedSkill;
+    public AudioClip playerBlueSkill;
+    
     AudioSource audioSource;
 
     private void Awake()

@@ -159,7 +159,7 @@ public class PlayerController : MonoBehaviour
     private void OnDisable()
     {
         //플레이어가 비활성화 될때마다 상태값 초기화
-        isRun = isJump = isHurt = isClimb = isAttack = isDownJump = isDash = false;
+        isRun = isJump = isDie = isHurt = isClimb = isAttack = isDownJump = isDash = false;
         isAniRun = isAniJump = isAniHurt = isClimb = isAniNAttack = isBlueSkillAni = isRedSkillAni = isGreenSkillAni = isAniDash = false;
         PlayerSfrite.transform.GetComponent<SpriteRenderer>().color = fullColor;
 
@@ -203,6 +203,7 @@ public class PlayerController : MonoBehaviour
                     //스테미나 소모
                     GameManager.instance.NowStamina -= BlueSkillStaminaCoat;
                     ColorSkill(BlueSkillPre, isColor, BlueSkilTime, BlueSkillDelay);
+                    SFXManager.Instance.PlaySound(SFXManager.Instance.playerBlueSkill); // 사운드 재생
                 }
                 else if (isColor == Color.green && isStamina >= GreenSkillStaminaCoat)
                 {
@@ -216,6 +217,7 @@ public class PlayerController : MonoBehaviour
                     //스테미나 소모
                     GameManager.instance.NowStamina -= RedSkillStaminaCoat;
                     ColorSkill(RedSkillPre, isColor, RedSkilTime, RedSkillDelay);
+                    SFXManager.Instance.PlaySound(SFXManager.Instance.playerRedSkill); // 사운드 재생
                 }
 
             }
@@ -272,7 +274,15 @@ public class PlayerController : MonoBehaviour
         }
 
         //애니메이션 일괄 처리
-        if(isClimb)
+        if (isDie)
+        {
+            nowAni = "Death";
+        }
+        else if (isHurt)
+        {
+            nowAni = "Hurt";
+        }
+        else if(isClimb)
         {
             nowAni = "StopClimb";
             if (inputClimb != 0)
@@ -315,8 +325,26 @@ public class PlayerController : MonoBehaviour
             nowAni = "None";
         }
 
+        //죽음 애니 처리
+        if (nowAni == "Death")
+        {
+            PlayerAnimation.SetBool("goDeath", true);
+        }
+        else
+        {
+            PlayerAnimation.SetBool("goDeath", false);
+        }
+        //피격 애니 처리
+        if (nowAni == "Hurt")
+        {
+            PlayerAnimation.SetBool("goHurt", true);
+        }
+        else
+        {
+            PlayerAnimation.SetBool("goHurt", false);
+        }
         //줄오르기 애니 처리
-        if(nowAni == "Climb")
+        if (nowAni == "Climb")
         {
             PlayerAnimation.SetBool("goStopClimb", true);
             PlayerAnimation.SetBool("goClimb", true);

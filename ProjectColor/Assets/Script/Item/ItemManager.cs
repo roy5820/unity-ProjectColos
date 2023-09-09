@@ -68,4 +68,10 @@ public class ItemManager : MonoBehaviour
         playerController.GreenSkillCoefficient += 0.3f;
         playerController.GreenSkillKnockBackPower += 3.5f;
     }
+
+    //날아라날아 스킬 구현
+    public void UpgradeExtraJump()
+    {
+        playerController.extraJumpMaxCnt += 1;
+    }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WarflChangScene : MonoBehaviour
 {
@@ -23,25 +24,27 @@ public class WarflChangScene : MonoBehaviour
     {
          if(ohter.tag == "Player")
         {
-            //클리어시 플레이어 및 ingame메니저 삭제
+            //클리어 여부 체크
             if (isClear)
             {
-                Destroy(GameManager.instance.FindPlayer.gameObject);
                 Destroy(GameManager.instance.gameObject);
-            }
-            //아이템 획득 여부에 다른 처리
-            if (GetItems)
-            {
-                //아이템 선택 함수 호출
-                StartCoroutine(GameManager.instance.SelectItemAndChangeScene(WarfSceneName));
+                Destroy(GameManager.instance.FindPlayer.gameObject);
+                SceneManager.LoadScene(WarfSceneName);
             }
             else
             {
-                //씬 이동 함수 호출
-                GameManager.instance.ChangScen(WarfSceneName);
-            }
-            
-                
+                //아이템 획득 여부에 다른 처리
+                if (GetItems)
+                {
+                    //아이템 선택 함수 호출
+                    StartCoroutine(GameManager.instance.SelectItemAndChangeScene(WarfSceneName));
+                }
+                else
+                {
+                    //씬 이동 함수 호출
+                    GameManager.instance.ChangScen(WarfSceneName);
+                }
+            } 
         }  
     }
 }

@@ -785,6 +785,10 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
@@ -818,6 +822,8 @@ ScriptsOnlyBuild:
     - Class: 157
       Script: {instanceID: 0}
     - Class: 196
+      Script: {instanceID: 0}
+    - Class: 212
       Script: {instanceID: 0}
     - Class: 213
       Script: {instanceID: 0}
@@ -952,7 +958,7 @@ ScriptsOnlyBuild:
     className: EnemyBullet
   - hash:
       serializedVersion: 2
-      Hash: 464179cd21e8014b2f8cd3fc1689e44e
+      Hash: b6084ea6f00b3af49fb6e3f8474d5108
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: SFXManager
@@ -1576,4 +1582,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/MAP3.unity
   - Assets/Scenes/BossPhase1.unity
   - Assets/Scenes/BossPhase2.unity
-  playerPath: "C:/Users/troy5/OneDrive/\uBC14\uD0D5 \uD654\uBA74/ProjectColor/ProjectColor.exe"
+  playerPath: C:/Users/User/Desktop/ProjectColors/ProjectColor.exe

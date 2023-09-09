@@ -140,6 +140,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29d71dd8fa2beb94eb46c2b84f35323a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerNomalAttack: {fileID: 8300000, guid: a5a5905429ad44617a98743b2f870fa6, type: 3}
+  playerDash: {fileID: 0}
   playerColorChange: {fileID: 8300000, guid: 34c202827e01aa9468cc5c7d88739a7f, type: 3}
+  playerNomalAttack: {fileID: 8300000, guid: a5a5905429ad44617a98743b2f870fa6, type: 3}
   playerGreenSkill: {fileID: 8300000, guid: ab0c18756ca0bf84bbf42221bffb4dd0, type: 3}
+  playerRedSkill: {fileID: 8300000, guid: e24dc0869cc9ee344896d466c4f4ccf5, type: 3}
+  playerBlueSkill: {fileID: 8300000, guid: a05927286ec1dae4f8ed9141cb76a540, type: 3}
