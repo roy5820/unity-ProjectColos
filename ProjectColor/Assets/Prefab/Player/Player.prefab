@@ -372,18 +372,18 @@ MonoBehaviour:
   NAttackStaminaCost: 0
   NAttackCoefficient: 1
   RedSkillPre: {fileID: 6699516953355484351, guid: 8ee2637234424d64eab655934b88b763, type: 3}
-  RedSkillStaminaCoat: 20
+  RedSkillStaminaCoat: 25
   RedSkilTime: 0.3
   RedSkillDelay: 0.2
-  RedSkillCoefficient: 1
+  RedSkillCoefficient: 0.75
   RedSkillShotingSpeed: 25
   BlueSkillPre: {fileID: 6699516953355484351, guid: 429381e1c89d4e6488deec7a8ad76f76, type: 3}
   BlueSkillStaminaCoat: 50
   BlueSkillDashPower: 0
-  BlueSkillJumpPower: 25
+  BlueSkillJumpPower: 20
   BlueSkilTime: 0.5
   BlueSkillDelay: 0.2
-  BlueSkillCoefficient: 2
+  BlueSkillCoefficient: 2.5
   GreenSkillPre: {fileID: 6699516953355484351, guid: 0596679cc3da02040bccac07b2fbd3f6, type: 3}
   GreenSkillStaminaCoat: 35
   GreenSkillKnockBackPower: 10

@@ -7689,10 +7689,10 @@ MonoBehaviour:
   trapBewareSpawnTime: 1
   rainSpawnInterval: 0.6
   rainSpawnTime: 2
-  BossRandomAttackTimeS: 3
-  BossRandomAttackTimeE: 6
+  BossRandomAttackTimeS: 2
+  BossRandomAttackTimeE: 5
   EnemyCanvus: {fileID: 644501727}
-  MaxHp: 250
+  MaxHp: 300
   ChangScenName: BossPhase2
   ReColorReactionTime: 3
 --- !u!95 &1300842109

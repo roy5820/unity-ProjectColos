@@ -221,11 +221,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8675180309886356375, guid: 10fa05a3d561bf64d877dbf891c879f8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 25.69
+      value: 25.78
       objectReference: {fileID: 0}
     - target: {fileID: 8675180309886356375, guid: 10fa05a3d561bf64d877dbf891c879f8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.21
+      value: 1.04
       objectReference: {fileID: 0}
     - target: {fileID: 8675180309886356375, guid: 10fa05a3d561bf64d877dbf891c879f8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1162,15 +1162,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2060701133863603316, guid: be92c66fedd8a4243894cf64723bfbcc, type: 3}
       propertyPath: m_Size.y
-      value: 10
+      value: 15.036799
       objectReference: {fileID: 0}
     - target: {fileID: 2060701133863603316, guid: be92c66fedd8a4243894cf64723bfbcc, type: 3}
       propertyPath: m_Offset.y
-      value: 5
+      value: 7.5183997
       objectReference: {fileID: 0}
     - target: {fileID: 2060701133863603316, guid: be92c66fedd8a4243894cf64723bfbcc, type: 3}
       propertyPath: m_SpriteTilingProperty.newSize.y
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3332419622043375386, guid: be92c66fedd8a4243894cf64723bfbcc, type: 3}
       propertyPath: duration
@@ -1182,7 +1182,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5599530410463242453, guid: be92c66fedd8a4243894cf64723bfbcc, type: 3}
       propertyPath: m_Size.y
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6648893716345724696, guid: be92c66fedd8a4243894cf64723bfbcc, type: 3}
       propertyPath: m_RootOrder
@@ -1234,7 +1234,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7008967291724674134, guid: be92c66fedd8a4243894cf64723bfbcc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.4329
+      value: 8.45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be92c66fedd8a4243894cf64723bfbcc, type: 3}

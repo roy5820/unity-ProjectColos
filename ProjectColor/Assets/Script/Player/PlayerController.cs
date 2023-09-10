@@ -239,7 +239,7 @@ public class PlayerController : MonoBehaviour
         //상태 관리
 
         //점프관련 상태관리
-        if (OnGround || OnPlatform || isClimb || isAttack)
+        if (OnGround || OnPlatform || isClimb)
         {
             extraJumpCnt = 0;
             isAniFlight = false;//체공상태 관리
@@ -278,6 +278,10 @@ public class PlayerController : MonoBehaviour
         {
             nowAni = "Death";
         }
+        else if (isGreenSkillAni)
+        {
+            nowAni = "GreenSkill";
+        }
         else if (isHurt)
         {
             nowAni = "Hurt";
@@ -295,10 +299,6 @@ public class PlayerController : MonoBehaviour
         else if (isRedSkillAni)
         {
             nowAni = "RedSkill";
-        }
-        else if (isGreenSkillAni)
-        {
-            nowAni = "GreenSkill";
         }
         else if (isBlueSkillAni)
         {

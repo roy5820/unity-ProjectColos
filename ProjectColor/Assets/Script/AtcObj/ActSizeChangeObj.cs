@@ -50,6 +50,14 @@ public class ActSizeChangeObj : MonoBehaviour
         }
     }
 
+    //강제 클리어 함수
+    public void ForcedClear()
+    {
+        objColor = ClearColor;
+        StartCoroutine(ScaleOverTime());
+        return;
+    }
+
     //크기 조절 코루틴
     private IEnumerator ScaleOverTime()
     {

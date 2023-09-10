@@ -1,12 +1,15 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - ActColoringObj
     - ActMovePlatform
+    - ActResetButton
     - ActSizeChangeObj
     - BlueSkill
     - BossController
     - CameraManager
     - ChangeScene
+    - ColoringController
     - CrimbObj
     - Damage
     - DeadZone
@@ -38,6 +41,7 @@ ScriptsOnlyBuild:
     Unity.2D.IK.Editor.dll:
     - UnityEditor.U2D.IK.IKEditorManager
     Unity.2D.Tilemap.Editor.dll:
+    - UnityEditor.Tilemaps.GridBrush
     - UnityEditor.Tilemaps.GridPaintingState
     - UnityEditor.Tilemaps.GridPaletteBrushes
     - UnityEditor.Tilemaps.GridPalettes
@@ -194,6 +198,12 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 224
       Script: {instanceID: 0}
+    - Class: 241
+      Script: {instanceID: 0}
+    - Class: 243
+      Script: {instanceID: 0}
+    - Class: 245
+      Script: {instanceID: 0}
     - Class: 19719996
       Script: {instanceID: 0}
     - Class: 156049354
@@ -326,6 +336,12 @@ ScriptsOnlyBuild:
     - Class: 223
       Script: {instanceID: 0}
     - Class: 224
+      Script: {instanceID: 0}
+    - Class: 241
+      Script: {instanceID: 0}
+    - Class: 243
+      Script: {instanceID: 0}
+    - Class: 245
       Script: {instanceID: 0}
     - Class: 251
       Script: {instanceID: 0}
@@ -469,6 +485,12 @@ ScriptsOnlyBuild:
     - Class: 223
       Script: {instanceID: 0}
     - Class: 224
+      Script: {instanceID: 0}
+    - Class: 241
+      Script: {instanceID: 0}
+    - Class: 243
+      Script: {instanceID: 0}
+    - Class: 245
       Script: {instanceID: 0}
     - Class: 251
       Script: {instanceID: 0}
@@ -615,6 +637,12 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 224
       Script: {instanceID: 0}
+    - Class: 241
+      Script: {instanceID: 0}
+    - Class: 243
+      Script: {instanceID: 0}
+    - Class: 245
+      Script: {instanceID: 0}
     - Class: 251
       Script: {instanceID: 0}
     - Class: 19719996
@@ -687,6 +715,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1994}
     - Class: 114
+      Script: {instanceID: 2004}
+    - Class: 114
       Script: {instanceID: 2116}
     - Class: 114
       Script: {instanceID: 2210}
@@ -694,6 +724,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 2328}
     - Class: 114
       Script: {instanceID: 2366}
+    - Class: 114
+      Script: {instanceID: 2432}
     - Class: 114
       Script: {instanceID: 2770}
     - Class: 114
@@ -733,6 +765,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 5286}
     - Class: 114
+      Script: {instanceID: 5348}
+    - Class: 114
       Script: {instanceID: 5362}
     - Class: 114
       Script: {instanceID: 5588}
@@ -757,6 +791,12 @@ ScriptsOnlyBuild:
     - Class: 223
       Script: {instanceID: 0}
     - Class: 224
+      Script: {instanceID: 0}
+    - Class: 241
+      Script: {instanceID: 0}
+    - Class: 243
+      Script: {instanceID: 0}
+    - Class: 245
       Script: {instanceID: 0}
     - Class: 251
       Script: {instanceID: 0}
@@ -834,6 +874,12 @@ ScriptsOnlyBuild:
     - Class: 224
       Script: {instanceID: 0}
     - Class: 225
+      Script: {instanceID: 0}
+    - Class: 241
+      Script: {instanceID: 0}
+    - Class: 243
+      Script: {instanceID: 0}
+    - Class: 245
       Script: {instanceID: 0}
   scriptHashData:
   - hash:
