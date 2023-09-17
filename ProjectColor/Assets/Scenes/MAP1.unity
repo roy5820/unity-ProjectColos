@@ -268,6 +268,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 941756898916050586, guid: dd4a35b8c82d5e544886b658d1af9b12, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 941756898916050586, guid: dd4a35b8c82d5e544886b658d1af9b12, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OutGame
+      objectReference: {fileID: 0}
     - target: {fileID: 1642724356211384170, guid: dd4a35b8c82d5e544886b658d1af9b12, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

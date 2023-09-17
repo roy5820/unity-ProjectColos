@@ -56,6 +56,9 @@ public class GameManager : MonoBehaviour
     // 게임 오버시 UI 컨트롤
     public GameObject DiePanel;
 
+    //게임 메뉴 UI컨트롤
+    public GameObject MenuPanel;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -278,5 +281,18 @@ public class GameManager : MonoBehaviour
         isSelectItem = true;//아이템 선택 여부 활성화
 
         this.SendMessage(thisObj.transform.GetChild(3).GetComponent<Text>().text);
+    }
+
+    //인게임 메뉴 컨트롤 관련 함수 OnC 0: 오픈 1: 닫기
+    public void ControllMenu(int OnC)
+    {
+        if(OnC == 0)
+        {
+            MenuPanel.SetActive(true);
+        }
+        else if(OnC == 1)
+        {
+            MenuPanel.SetActive(false);
+        }
     }
 }
